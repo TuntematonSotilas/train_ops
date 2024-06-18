@@ -1,7 +1,7 @@
 {
   "productName": "poc_tauri",
-  "version": "0.0.0",
-  "identifier": "com.tauri.dev",
+  "version": "0.0.1",
+  "identifier": "com.sarco.dev",
   "build": {
     "beforeDevCommand": "trunk serve",
     "devUrl": "http://localhost:1420",
