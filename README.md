@@ -27,6 +27,7 @@ https://v2.tauri.app/fr/start/prerequisites/#configuration-pour-mobile
 
 cargo tauri dev
 
-## Run for Android 
+## Android 
 
-cargo tauri android dev
+* Init : `cargo tauri android init`
+* Run : `cargo tauri android dev`
