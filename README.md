@@ -31,3 +31,39 @@ cargo tauri dev
 
 * Init : `cargo tauri android init`
 * Run : `cargo tauri android dev`
+* Build : `cargo tauri android build`
+
+## Sign the APK
+
+* Generate the JKS file : [generate-key](https://developer.android.com/studio/publish/app-signing?hl=fr#generate-key)
+* Copy the JKS file in the folder `src-tauri/gen/android/app`
+* Create the file `key.properties` in the folder `src-tauri/gen/android/app`
+```
+storePassword=
+keyPassword=
+keyAlias=
+storeFile=
+```
+* Update the file `src-tauri/gen/android/app/build.gradle.kts` : 
+```
+val keyProperties = Properties().apply {
+    val propFile = file("key.properties")
+    if (propFile.exists()) {
+        propFile.inputStream().use { load(it) }
+    }
+}
+signingConfigs {
+    create("release") {
+        keyAlias = keyProperties.getProperty("keyAlias")
+        keyPassword = keyProperties.getProperty("keyPassword")
+        storeFile = file(keyProperties.getProperty("storeFile"))
+        storePassword = keyProperties.getProperty("storePassword")
+    }
+}
+buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            ...
+        }
+}
+```
