@@ -1,6 +1,8 @@
-# Tauri + Yew
+# Train Ops
 
-This template should help get you started developing with Tauri and Yew.
+A train game for Android.
+
+Made with Tauri and Yew.
 
 ## Installation 
 
@@ -52,19 +54,21 @@ val keyProperties = Properties().apply {
         propFile.inputStream().use { load(it) }
     }
 }
-signingConfigs {
-    create("release") {
-        keyAlias = keyProperties.getProperty("keyAlias")
-        keyPassword = keyProperties.getProperty("keyPassword")
-        storeFile = file(keyProperties.getProperty("storeFile"))
-        storePassword = keyProperties.getProperty("storePassword")
-    }
-}
-buildTypes {
-        getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
-            ...
+android {
+    signingConfigs {
+        create("release") {
+            keyAlias = keyProperties.getProperty("keyAlias")
+            keyPassword = keyProperties.getProperty("keyPassword")
+            storeFile = file(keyProperties.getProperty("storeFile"))
+            storePassword = keyProperties.getProperty("storePassword")
         }
+    }
+    buildTypes {
+            getByName("release") {
+                signingConfig = signingConfigs.getByName("release")
+                ...
+            }
+    }
 }
 ```
 

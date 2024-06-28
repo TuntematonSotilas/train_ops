@@ -1,5 +1,5 @@
 {
-  "productName": "poc_tauri",
+  "productName": "Train Ops",
   "version": "0.0.1",
   "identifier": "com.sarco.dev",
   "build": {
@@ -12,7 +12,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "poc_tauri",
+        "title": "Train Ops",
         "width": 800,
         "height": 600
       }

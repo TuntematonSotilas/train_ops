@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    poc_tauri_lib::run()
+    train_ops_lib::run()
 }
