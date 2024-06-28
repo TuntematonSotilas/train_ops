@@ -67,3 +67,6 @@ buildTypes {
         }
 }
 ```
+
+## Generate icons 
+`cargo tauri icon <path>` 
