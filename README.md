@@ -8,11 +8,7 @@ Made with Tauri and Yew.
 
 * Tauri CLI : `cargo install tauri-cli --version '^2.0.0-beta'`
 * Trunk : `cargo install trunk` 
-
-Others prerequisites : 
-[Tauri](https://tauri.app/v1/guides/getting-started/prerequisites/)
-
-## Recommended IDE Setup
+* Others prerequisites : [tauri-pre](https://tauri.app/v1/guides/getting-started/prerequisites/)
 
 VSCode extensions : 
  
@@ -20,10 +16,7 @@ VSCode extensions :
 * [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
 * [rust-yew](https://marketplace.visualstudio.com/items?itemName=TechTheAwesome.rust-yew) 
 
-## Mobile config 
-
-https://v2.tauri.app/fr/start/prerequisites/#configuration-pour-mobile
-
+Android config : [tauri-android](https://v2.tauri.app/start/prerequisites/#android)
 
 ## Run 
 
