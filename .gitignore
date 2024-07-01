@@ -20,3 +20,4 @@
 /src-tauri/gen/android/tauri.settings.gradle
 /src-tauri/gen/android/app/build
 /src-tauri/gen/android/app/key.jks
+/src-tauri/.cargo/
