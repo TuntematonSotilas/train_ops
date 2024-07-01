@@ -1,4 +1,5 @@
 mod app;
+pub mod stores;
 
 use app::App;
 
