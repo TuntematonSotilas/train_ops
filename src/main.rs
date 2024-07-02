@@ -1,5 +1,5 @@
 mod app;
-pub mod stores;
+pub mod states;
 
 use app::App;
 
