@@ -1,0 +1,36 @@
+.map {
+    --board-length: 5;
+    --tile-size: 50px;
+    background: #555857;
+    font-size: 0px;
+    height: 20rem;
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.map-ctn {
+    transform: rotateX(55deg) rotateZ(45deg);
+    height: calc(var(--tile-size)*var(--board-length));
+    width: calc(var(--tile-size)*var(--board-length));
+}
+
+
+.tile {
+    display: inline-block;
+    background: none;
+    width: var(--tile-size);
+    height: var(--tile-size);
+    margin: 0;
+    border: solid 1px #969696;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.tile:hover {
+    background: blue;
+}

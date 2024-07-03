@@ -67,3 +67,6 @@ android {
 
 ## Generate icons 
 `cargo tauri icon <path>` 
+
+## Color Palette 
+[colorhunt](https://colorhunt.co/palette/131842e68369ecceaefbf6e2)

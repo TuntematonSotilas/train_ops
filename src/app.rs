@@ -1,5 +1,6 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
+
 use crate::routes::Route;
 use crate::components::{menu_comp::MenuComp, game_comp::GameComp};
 
@@ -7,11 +8,9 @@ use crate::components::{menu_comp::MenuComp, game_comp::GameComp};
 pub fn app() -> Html {
 
     html! {
-        <main class="container">
-            <BrowserRouter>
-                <Switch<Route> render={switch} />
-            </BrowserRouter>
-        </main>
+        <BrowserRouter>
+            <Switch<Route> render={switch} />
+        </BrowserRouter>
     }
 }
 
