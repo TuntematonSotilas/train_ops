@@ -8,7 +8,7 @@ Made with Tauri and Yew.
 
 * Tauri CLI : `cargo install tauri-cli --version '^2.0.0-beta'`
 * Trunk : `cargo install trunk` 
-* Others prerequisites : [tauri-pre](https://tauri.app/v1/guides/getting-started/prerequisites/)
+* Others prerequisites : [tauri-prerequisites](https://tauri.app/v1/guides/getting-started/prerequisites/)
 
 VSCode extensions : 
  
