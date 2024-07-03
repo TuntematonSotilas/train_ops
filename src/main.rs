@@ -1,5 +1,7 @@
 mod app;
+mod routes;
 pub mod states;
+pub mod components;
 
 use app::App;
 
