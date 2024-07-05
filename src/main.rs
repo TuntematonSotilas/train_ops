@@ -1,5 +1,5 @@
 mod app;
-mod routes;
+mod enums;
 pub mod states;
 pub mod components;
 

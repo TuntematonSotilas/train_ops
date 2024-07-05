@@ -3,7 +3,7 @@ use yew::prelude::*;
 use yewdux::prelude::*;
 use yew_router::prelude::*;
 
-use crate::routes::Route;
+use crate::enums::route::Route;
 use crate::states::app_state::AppState;
 use crate::components::map_comp::MapComp;
 
@@ -11,7 +11,7 @@ use crate::components::map_comp::MapComp;
 pub fn game() -> Html {
 
     let navigator = use_navigator().unwrap();
-    let menuclick = Callback::from(move |_| navigator.push(&Route::Menu));
+    let menuclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Menu));
 
     let (ostate, dispatch) = use_store::<AppState>();
     let pauseclick = dispatch.reduce_mut_callback(|state| state.is_paused = !state.is_paused);

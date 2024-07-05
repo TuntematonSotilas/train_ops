@@ -6,4 +6,6 @@ pub enum Route {
     Menu,
     #[at("/game")]
     Game,
+    #[at("/setting")]
+    Setting,
 }
