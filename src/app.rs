@@ -58,6 +58,8 @@ fn get_translation() -> HashMap<String, Value> {
         }),
     );
 
+    log::info!("{:?}", translations);
+
     translations
 
 }
