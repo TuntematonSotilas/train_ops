@@ -2,17 +2,22 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 use yew_i18n::use_translation;
+use yewdux::prelude::*;
 
-use crate::enums::route::Route;
+use crate::{enums::route::Route, states::app_state::AppState};
 
 #[function_component(MenuComp)]
 pub fn menu() -> Html {
 
+    let dispatch = use_dispatch::<AppState>();
+    let state = dispatch.get();
+
     let navigator = use_navigator().unwrap();
     let onclick = Callback::from(move |route: &Route| navigator.push(route));
 
-    let i18n = use_translation();
-    
+    let mut i18n = use_translation();
+    let _ = i18n.set_translation_language(state.current_lang.to_string().to_lowercase().as_str());
+
     html! {
         <div class="container">
             <div class="row">
@@ -32,7 +37,6 @@ pub fn menu() -> Html {
                     {"Settings"}
                 </button>
             </div>
-            
         </div>
     }
 }

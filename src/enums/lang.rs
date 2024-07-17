@@ -1,9 +1,11 @@
 use std::fmt;
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Default)]
 pub enum Lang {
+    #[default]
     EN,
-    FR
+    ES,
+    FR,
 }
 
 impl fmt::Display for Lang {

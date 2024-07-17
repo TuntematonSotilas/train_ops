@@ -11,7 +11,7 @@ use crate::components::{menu_comp::MenuComp, game_comp::GameComp, setting_comp::
 #[function_component(App)]
 pub fn app() -> Html {
 
-    let supported_languages = vec!["en", "fr"];
+    let supported_languages = vec!["en", "es", "fr"];
     let translations = get_translation();
     
     html! {
@@ -35,7 +35,7 @@ fn get_translation() -> HashMap<String, Value> {
     let mut translations = HashMap::new();
 
     translations.insert(
-    	// en to en
+    	// EN to EN
         "en".to_string(),
         serde_json::json!({
             "New Game": "New Game",
@@ -43,12 +43,21 @@ fn get_translation() -> HashMap<String, Value> {
     );
 
     translations.insert(
-    	// en to fr
+    	// EN to FR
         "fr".to_string(),
         serde_json::json!({
             "New Game": "Nouvelle Partie",
         }),
     );
+
+    translations.insert(
+    	// EN to ES
+        "es".to_string(),
+        serde_json::json!({
+            "New Game": "Nuevo juego",
+        }),
+    );
+
     translations
 
 }
