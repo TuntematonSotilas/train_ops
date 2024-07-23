@@ -1,7 +1,8 @@
 
 use yew::prelude::*;
+use yew_i18n::use_translation;
 use yew_router::prelude::*;
-use yewdux::use_dispatch;
+use yewdux::use_store;
 
 use crate::{enums::{lang::Lang, route::Route}, states::app_state::AppState};
 
@@ -11,14 +12,17 @@ pub fn setting() -> Html {
     let navigator = use_navigator().unwrap();
     let menuclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Menu));
 
-    let dispatch = use_dispatch::<AppState>();
+    let (state, dispatch) = use_store::<AppState>();
 
     let langclick = Callback::from(move |lang: &Lang| dispatch.reduce_mut(|state| state.current_lang = lang.clone()));
-
+    
+    let mut i18n = use_translation();
+    let _ = i18n.set_translation_language(state.current_lang.to_string().to_lowercase().as_str());
+    
     html! {
         <div class="container">
             <div class="row">
-                <h1>{"Settings"}</h1>
+                <h1>{ i18n.t("Settings") } </h1>
             </div>
             <div class="row">
                 <button onclick={
