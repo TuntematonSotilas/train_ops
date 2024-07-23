@@ -27,14 +27,14 @@ pub fn menu() -> Html {
                 <button onclick={
                     let onclick = onclick.clone();
                     move |_| onclick.emit(&Route::Game)}>
-                    { i18n.t("New Game") }    
+                    { i18n.t("New Game") }
                 </button>
             </div>
             <div class="row">
                 <button onclick={
                     let onclick = onclick.clone();
                     move |_| onclick.emit(&Route::Setting)}>
-                    {"Settings"}
+                    { i18n.t("Settings") }
                 </button>
             </div>
         </div>

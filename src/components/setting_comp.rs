@@ -22,7 +22,7 @@ pub fn setting() -> Html {
     html! {
         <div class="container">
             <div class="row">
-                <h1>{ i18n.t("Settings") } </h1>
+                <h1>{ i18n.t("Settings") }</h1>
             </div>
             <div class="row">
                 <button onclick={
@@ -47,7 +47,7 @@ pub fn setting() -> Html {
             </div>
             <div class="row">
                 <button onclick={menuclick}>
-                    {"Exit"}    
+                    { i18n.t("Save") }
                 </button>
             </div>
         </div>
