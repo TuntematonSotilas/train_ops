@@ -33,7 +33,9 @@
   }
   
   button {
+    cursor: pointer;
     background-color: #E68369;
+    color: #FBF6E2;
     font-size: 1em;
     font-family: inherit;
     font-weight: 500;
@@ -42,30 +44,17 @@
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border: 1px solid transparent;
-    color: #333;
-    /* box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange; */
-    border: 1px solid lightblue;
-    
-    /* border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    color: #ffffff;
-    background-color: #ffffff42;
+    border: 1px solid #ECCEAE;
     transition: border-color 0.25s;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
-  }
-  
-  button {
-    cursor: pointer;
+    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
   }
   
   button:hover {
-    /* border-color: #E68369; */
+    border-color: #FBF6E2;
   }
   
   button:active {
-    /* border-color: #E68369; */
-    /* background-color: #ffffff75; */
+    border-color: #FBF6E2;
   }
   
   button {
