@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.train_ops" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/dark_blue</item>
-        <item name="android:statusBarColor">@color/dark_blue</item>
+        <item name="colorPrimary">@color/dark_brown</item>
+        <item name="android:statusBarColor">@color/dark_brown</item>
     </style>
 </resources>

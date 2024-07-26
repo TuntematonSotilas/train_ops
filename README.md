@@ -44,4 +44,14 @@ storeFile=key.jks
 `cargo tauri icon <path>` 
 
 ## Color Palette 
-[colorhunt](https://colorhunt.co/palette/131842e68369ecceaefbf6e2)
+
+<div style="display:flex; flex-direction:column; width:10rem; color:black; border-radius:5px; text-align:center">
+    <div style="background:#2b1c14;color:#ccc">#2b1c14</div>
+    <div style="background:#5e7676">#5e7676</div>
+    <div style="background:#e98554;">#e98554</div>
+    <div style="background:#ffbe7d;">#ffbe7d</div>
+    <div style="background:#fdf8d0;">#fdf8d0</div>
+    <div style="background:#074d45;color:#ccc">#074d45</div>
+    <div style="background:#258158;">#258158</div>
+    <div style="background:#7bc572;">#7bc572</div>
+</div>

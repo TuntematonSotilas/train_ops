@@ -1,63 +1,60 @@
 :root {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
+  --color-text: #fdf8d0;
+
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  color: var(--color-text);
+  background-color: #2b1c14;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
   
-    color: #f6f6f6;
-    background-color: #131842;
+.container {
+  margin: 0;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
   
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-  }
-  
-  .container {
-    margin: 0;
-    padding-top: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .row {
-    display: flex;
-    justify-content: center;
-    margin: 1em;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  button {
-    cursor: pointer;
-    background-color: #E68369;
-    color: #FBF6E2;
-    font-size: 1em;
-    font-family: inherit;
-    font-weight: 500;
-    border-radius: 1px;
-    width: 8rem;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border: 1px solid transparent;
-    border: 1px solid #ECCEAE;
-    transition: border-color 0.25s;
-    /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
-  }
-  
-  button:hover {
-    border-color: #FBF6E2;
-  }
-  
-  button:active {
-    border-color: #FBF6E2;
-  }
-  
-  button {
-    outline: none;
-  }
-  
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  width: 8rem;
+  color: var(--color-text);
+  background-color: #074d45;
+  cursor: pointer;
+  outline: none;
+  font-size: 1em;
+  font-family: inherit;
+  font-weight: 500;
+  border: 1px solid #ffbe7d;
+  border-radius: 2px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  transition: border-color 0.25s;
+  /*box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
+}
+
+button:hover {
+  border-color: #5e7676;
+}
+
+button:active {
+  border-color: #5e7676;
+}

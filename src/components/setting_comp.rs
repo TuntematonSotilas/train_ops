@@ -10,11 +10,12 @@ use crate::{enums::{lang::Lang, route::Route}, states::app_state::AppState};
 pub fn setting() -> Html {
 
     let navigator = use_navigator().unwrap();
-    let menuclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Menu));
-
     let (state, dispatch) = use_store::<AppState>();
 
-    let langclick = Callback::from(move |lang: &Lang| dispatch.reduce_mut(|state| state.current_lang = lang.clone()));
+    let langclick = Callback::from(move |lang: &Lang| {
+        dispatch.reduce_mut(|state| state.current_lang = lang.clone());
+        navigator.push(&Route::Menu)
+    });
     
     let mut i18n = use_translation();
     let _ = i18n.set_translation_language(state.current_lang.to_string().to_lowercase().as_str());
@@ -43,11 +44,6 @@ pub fn setting() -> Html {
                     let langclick = langclick.clone();
                     move |_| langclick.emit(&Lang::FR)}>
                     {"Français"} 
-                </button>
-            </div>
-            <div class="row">
-                <button onclick={menuclick}>
-                    { i18n.t("Save") }
                 </button>
             </div>
         </div>
