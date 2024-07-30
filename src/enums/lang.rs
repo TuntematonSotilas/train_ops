@@ -6,6 +6,7 @@ pub enum Lang {
     EN,
     ES,
     FR,
+    DE
 }
 
 impl fmt::Display for Lang {

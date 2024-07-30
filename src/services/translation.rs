@@ -36,6 +36,17 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Exit": "Quitter",
         }),
     );
+
+    translations.insert(
+    	// EN to DE
+        "de".to_string(),
+        serde_json::json!({
+            "New Game": "Neues Spiel",
+            "Settings": "Einstellungen",
+            "Save": "Speichern",
+            "Exit": "Ausfahrt",
+        }),
+    );
     
     translations
 }

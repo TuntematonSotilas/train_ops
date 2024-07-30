@@ -46,6 +46,13 @@ pub fn setting() -> Html {
                     {"Français"} 
                 </button>
             </div>
+            <div class="row">
+                <button onclick={
+                    let langclick = langclick.clone();
+                    move |_| langclick.emit(&Lang::DE)}>
+                    {"Deutsch"} 
+                </button>
+            </div>
         </div>
     }
 }

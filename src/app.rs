@@ -9,7 +9,7 @@ use crate::services::translation::get_translation;
 #[function_component(App)]
 pub fn app() -> Html {
 
-    let supported_languages = vec!["en", "es", "fr"];
+    let supported_languages = vec!["en", "es", "fr", "de"];
     let translations = get_translation();
     
     html! {
