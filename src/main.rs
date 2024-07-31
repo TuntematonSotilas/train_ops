@@ -3,6 +3,7 @@ mod enums;
 pub mod states;
 pub mod components;
 pub mod services;
+pub mod api;
 
 use app::App;
 

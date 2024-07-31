@@ -15,7 +15,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Save": "Save",
             "Exit": "Exit",
             "Connect": "Connect",
-            "Login": "Login",
+            "Username": "Username",
             "Password": "Password",
         }),
     );
@@ -29,7 +29,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Save": "Guardar",
             "Exit": "Dejar",
             "Connect": "Conectar",
-            "Login": "Identificador",
+            "Username": "Identificador",
             "Password": "Contraseña",
         }),
     );
@@ -43,7 +43,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Save": "Enregistrer",
             "Exit": "Quitter",
             "Connect": "Connexion",
-            "Login": "Identifiant",
+            "Username": "Identifiant",
             "Password": "Mot de passe",
         }),
     );
@@ -57,7 +57,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Save": "Speichern",
             "Exit": "Ausfahrt",
             "Connect": "Verbinden",
-            "Login": "Identifikator",
+            "Username": "Identifikator",
             "Password": "Passwort",
         }),
     );

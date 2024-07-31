@@ -25,7 +25,7 @@ pub fn login() -> Html {
                 <h1>{"Login"}</h1>
             </div>
             <div class="row">
-                <input type="text" placeholder={{ i18n.t("Login") }}/>
+                <input type="text" placeholder={{ i18n.t("Username") }}/>
             </div>
             <div class="row">
                 <input type="password" placeholder={{ i18n.t("Password") }}/>
