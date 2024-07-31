@@ -45,12 +45,16 @@ storeFile=key.jks
 
 ## Color Palette 
 
-* $\colorbox{#2b1c14}{{\color{#ccc}{\#2b1c14}}}$
-* $\colorbox{#5e7676}{{\color{black}{\#5e7676}}}$
-* $\colorbox{#e98554}{{\color{black}{\#e98554}}}$
-* $\colorbox{#ffbe7d}{{\color{black}{\#ffbe7d}}}$
-* $\colorbox{#fdf8d0}{{\color{black}{\#fdf8d0}}}$
-* $\colorbox{#074d45}{{\color{#ccc}{\#074d45}}}$
-* $\colorbox{#258158}{{\color{black}{\#258158}}}$
-* $\colorbox{#7bc572}{{\color{black}{\#7bc572}}}$
+* #2b1c14
+* #5e7676
+* #e98554
+* #ffbe7d
+* #fdf8d0
+* #074d45
+* #258158
+* #7bc572
 
+<svg>
+  <rect width="150" height="30" style="fill: #2b1c14;" />
+
+</svg>
