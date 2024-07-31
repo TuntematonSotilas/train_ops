@@ -45,16 +45,13 @@ storeFile=key.jks
 
 ## Color Palette 
 
-* #2b1c14
-* #5e7676
-* #e98554
-* #ffbe7d
-* #fdf8d0
-* #074d45
-* #258158
-* #7bc572
-
-| code  | color                                           |
-| :---- |:------------------------------------------------|
-| #2b1c14  | <span style="color:#2b1c14">&#9724;</span> |
-| #F00  | <span style="color:rgb(200,0,0)">&#9724;</span> |
+<div style="display:flex; flex-direction:column; width:10rem; color:black; border-radius:5px; text-align:center">
+    <div style="background:#2b1c14;color:#ccc">#2b1c14</div>
+    <div style="background:#5e7676">#5e7676</div>
+    <div style="background:#e98554;">#e98554</div>
+    <div style="background:#ffbe7d;">#ffbe7d</div>
+    <div style="background:#fdf8d0;">#fdf8d0</div>
+    <div style="background:#074d45;color:#ccc">#074d45</div>
+    <div style="background:#258158;">#258158</div>
+    <div style="background:#7bc572;">#7bc572</div>
+</div>
