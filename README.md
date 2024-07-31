@@ -51,7 +51,7 @@ storeFile=key.jks
     <div style="background:#e98554;">#e98554</div>
     <div style="background:#ffbe7d;">#ffbe7d</div>
     <div style="background:#fdf8d0;">#fdf8d0</div>
-    <div style="background:#074d45;color:#ccc">#074d45</div>
-    <div style="background:#258158;">#258158</div>
+    <div style="background:#0a3631;color:#ccc">#0a3631</div>
+    <div style="background:#175e3e;color:#ccc">#175e3e</div>
     <div style="background:#7bc572;">#7bc572</div>
 </div>

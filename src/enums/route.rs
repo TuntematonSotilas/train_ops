@@ -3,8 +3,8 @@ use yew_router::prelude::*;
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {
     #[at("/")]
-    Menu,
-    #[at("/game")]
+    Login,
+    #[at("/menu")]
     Game,
     #[at("/setting")]
     Setting,

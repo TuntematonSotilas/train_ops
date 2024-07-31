@@ -12,7 +12,7 @@ use crate::components::map_comp::MapComp;
 pub fn game() -> Html {
 
     let navigator = use_navigator().unwrap();
-    let menuclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Menu));
+    let loginclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Login));
 
     let (state, dispatch) = use_store::<AppState>();
     let pauseclick = dispatch.reduce_mut_callback(|state| state.is_paused = !state.is_paused);
@@ -26,7 +26,7 @@ pub fn game() -> Html {
                 <h1>{"Game"}</h1>
             </div>
             <div class="row">
-                <button onclick={menuclick}>{ i18n.t("Exit") }</button>
+                <button onclick={loginclick}>{ i18n.t("Exit") }</button>
             </div>
             <div class="row">
                 <button onclick={pauseclick}>{"Pause"}</button>

@@ -14,7 +14,7 @@ pub fn setting() -> Html {
 
     let langclick = Callback::from(move |lang: &Lang| {
         dispatch.reduce_mut(|state| state.current_lang = lang.clone());
-        navigator.push(&Route::Menu)
+        navigator.push(&Route::Login)
     });
     
     let mut i18n = use_translation();
