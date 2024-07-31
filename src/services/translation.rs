@@ -1,12 +1,14 @@
 use serde_json::*;
 use std::collections::HashMap;
 
+use crate::enums::lang::Lang;
+
 pub fn get_translation() -> HashMap<String, Value> {
     let mut translations = HashMap::new();
 
     translations.insert(
     	// EN to EN
-        "en".to_string(),
+        Lang::EN.to_string(),
         serde_json::json!({
             "New Game": "New Game",
             "Settings": "Settings",
@@ -17,7 +19,7 @@ pub fn get_translation() -> HashMap<String, Value> {
 
     translations.insert(
     	// EN to ES
-        "es".to_string(),
+        Lang::ES.to_string(),
         serde_json::json!({
             "New Game": "Nuevo juego",
             "Settings": "Ajustes",
@@ -28,7 +30,7 @@ pub fn get_translation() -> HashMap<String, Value> {
 
     translations.insert(
     	// EN to FR
-        "fr".to_string(),
+        Lang::FR.to_string(),
         serde_json::json!({
             "New Game": "Nouvelle Partie",
             "Settings": "Paramètres",
@@ -39,7 +41,7 @@ pub fn get_translation() -> HashMap<String, Value> {
 
     translations.insert(
     	// EN to DE
-        "de".to_string(),
+        Lang::DE.to_string(),
         serde_json::json!({
             "New Game": "Neues Spiel",
             "Settings": "Einstellungen",

@@ -16,7 +16,7 @@ pub fn menu() -> Html {
     let onclick = Callback::from(move |route: &Route| navigator.push(route));
 
     let mut i18n = use_translation();
-    let _ = i18n.set_translation_language(state.current_lang.to_string().to_lowercase().as_str());
+    let _ = i18n.set_translation_language(state.current_lang.to_str());
 
     html! {
         <div class="container">

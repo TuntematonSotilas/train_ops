@@ -1,6 +1,4 @@
-use std::fmt;
-
-#[derive(Clone, Debug, PartialEq, Default)]
+#[derive(Clone, PartialEq, Default)]
 pub enum Lang {
     #[default]
     EN,
@@ -9,8 +7,21 @@ pub enum Lang {
     DE
 }
 
-impl fmt::Display for Lang {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{:?}", self)
+impl Lang 
+{
+    pub fn to_str(&self) -> &str 
+    {
+        match &self {
+            Lang::EN => "EN",
+            Lang::ES => "ES",
+            Lang::FR => "FR",
+            Lang::DE => "DE",
+        }
     }
+
+    pub fn to_string(&self) -> String 
+    {
+       self.to_str().to_string()
+    }
+
 }

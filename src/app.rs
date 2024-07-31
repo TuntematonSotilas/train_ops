@@ -2,6 +2,7 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 use yew_i18n::I18nProvider;
 
+use crate::enums::lang::Lang;
 use crate::enums::route::Route;
 use crate::components::{menu_comp::MenuComp, game_comp::GameComp, setting_comp::SettingComp};
 use crate::services::translation::get_translation;
@@ -9,7 +10,13 @@ use crate::services::translation::get_translation;
 #[function_component(App)]
 pub fn app() -> Html {
 
-    let supported_languages = vec!["en", "es", "fr", "de"];
+    let supported_languages = vec![
+        Lang::EN.to_str(), 
+        Lang::ES.to_str(), 
+        Lang::FR.to_str(), 
+        Lang::DE.to_str()
+    ];
+    
     let translations = get_translation();
     
     html! {

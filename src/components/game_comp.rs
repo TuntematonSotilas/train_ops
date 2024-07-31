@@ -18,7 +18,7 @@ pub fn game() -> Html {
     let pauseclick = dispatch.reduce_mut_callback(|state| state.is_paused = !state.is_paused);
 
     let mut i18n = use_translation();
-    let _ = i18n.set_translation_language(state.current_lang.to_string().to_lowercase().as_str());
+    let _ = i18n.set_translation_language(state.current_lang.to_str());
 
     html! {
         <div>
