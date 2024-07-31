@@ -45,13 +45,12 @@ storeFile=key.jks
 
 ## Color Palette 
 
-<div style="display:flex; flex-direction:column; width:10rem; color:black; border-radius:5px; text-align:center">
-    <div style="background:#2b1c14;color:#ccc">#2b1c14</div>
-    <div style="background:#5e7676">#5e7676</div>
-    <div style="background:#e98554;">#e98554</div>
-    <div style="background:#ffbe7d;">#ffbe7d</div>
-    <div style="background:#fdf8d0;">#fdf8d0</div>
-    <div style="background:#074d45;color:#ccc">#074d45</div>
-    <div style="background:#258158;">#258158</div>
-    <div style="background:#7bc572;">#7bc572</div>
-</div>
+* $\colorbox{#2b1c14}{{\color{#ccc}{\#2b1c14}}}$
+* $\colorbox{#5e7676}{{\color{black}{\#5e7676}}}$
+* $\colorbox{#e98554}{{\color{black}{\#e98554}}}$
+* $\colorbox{#ffbe7d}{{\color{black}{\#ffbe7d}}}$
+* $\colorbox{#fdf8d0}{{\color{black}{\#fdf8d0}}}$
+* $\colorbox{#074d45}{{\color{#ccc}{\#074d45}}}$
+* $\colorbox{#258158}{{\color{black}{\#258158}}}$
+* $\colorbox{#7bc572}{{\color{black}{\#7bc572}}}$
+
