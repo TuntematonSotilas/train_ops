@@ -54,7 +54,7 @@ storeFile=key.jks
 * #258158
 * #7bc572
 
-<svg viewbox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-  <rect width="150" height="30" style="fill: #2b1c14;" />
-
-</svg>
+| code  | color                                           |
+| :---- |:------------------------------------------------|
+| #2b1c14  | <span style="color:#2b1c14">&#9724;</span> |
+| #F00  | <span style="color:rgb(200,0,0)">&#9724;</span> |
