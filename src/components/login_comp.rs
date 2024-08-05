@@ -4,7 +4,7 @@ use yew_i18n::use_translation;
 use yew_router::prelude::*;
 use yewdux::prelude::*;
 
-use crate::{enums::route::Route, states::app_state::AppState};
+use crate::{api::login_api, enums::route::Route, states::app_state::AppState};
 
 #[function_component(LoginComp)]
 pub fn login() -> Html {
@@ -16,8 +16,14 @@ pub fn login() -> Html {
     let _ = i18n.set_translation_language(state.current_lang.to_str());
    
     let navigator = use_navigator().unwrap();
-    let settclick = Callback::from(move |route: &Route| navigator.push(route));
-
+    let sett_click = Callback::from(move |route: &Route| navigator.push(route));
+    
+    let login_click = Callback::from(move |_| {
+        wasm_bindgen_futures::spawn_local(async move {
+            let res = login_api::login("a".to_string(), "b".to_string()).await;
+            log::info!("{0}", res);
+        });
+    });
        
     html! {
         <div class="container">
@@ -31,14 +37,13 @@ pub fn login() -> Html {
                 <input type="password" placeholder={{ i18n.t("Password") }}/>
             </div>
             <div class="row">
-                <button>
+                <button onclick={login_click}>
                     { i18n.t("Connect") }
                 </button>
             </div>
             <div class="row login__btn--settings">
                 <button onclick={
-                    let onclick = settclick.clone();
-                    move |_| onclick.emit(&Route::Setting)}>
+                    move |_| sett_click.emit(&Route::Setting)}>
                     { i18n.t("Settings") }
                 </button>
             </div>
