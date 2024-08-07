@@ -8,17 +8,13 @@ pub fn map() -> Html {
 
     html! {
         <div class="map">
-            <div class="wrapper">
-                <div class="map-ctn">
-                    { 
-                        tiles.iter().map(|_| { 
-                            html!{
-                                <div class="tile"></div>
-                            }
-                        }).collect::<Html>()
+            { 
+                tiles.iter().map(|_| { 
+                    html!{
+                        <div class="tile"></div>
                     }
-                </div>
-            </div>
+                }).collect::<Html>()
+            }
         </div>
     }
 }

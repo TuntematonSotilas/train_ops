@@ -14,8 +14,8 @@ pub fn game() -> Html {
     let navigator = use_navigator().unwrap();
     let loginclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Login));
 
-    let (state, dispatch) = use_store::<AppState>();
-    let pauseclick = dispatch.reduce_mut_callback(|state| state.is_paused = !state.is_paused);
+    let dispatch = use_dispatch::<AppState>();
+    let state = dispatch.get();
 
     let mut i18n = use_translation();
     let _ = i18n.set_translation_language(state.current_lang.to_str());
@@ -26,13 +26,11 @@ pub fn game() -> Html {
                 <h1>{"Game"}</h1>
             </div>
             <div class="row">
+                {"User : "}
+                {state.user.user_name.clone()}
+            </div>
+            <div class="row">
                 <button onclick={loginclick}>{ i18n.t("Exit") }</button>
-            </div>
-            <div class="row">
-                <button onclick={pauseclick}>{"Pause"}</button>
-            </div>
-            <div class="row">
-                { &state.is_paused }
             </div>
             <MapComp/> 
         </div>

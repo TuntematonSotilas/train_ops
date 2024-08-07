@@ -1,17 +1,12 @@
 use base64::prelude::*;
 use gloo_net::http::Request;
-use serde::Deserialize;
+
+use crate::states::app_state::User;
 
 const BASE_URI: &str = "https://eu-west-2.aws.data.mongodb-api.com/app/trainops-ciefkxv/endpoint/";
 const AUTH_HEAD: &str = "Authorization";
 
-#[derive(Deserialize)]
-pub struct LoginRes {
-    pub id: String,  
-    pub user_name: String  
-}
-
-pub async fn login(username: String, password: String) -> Option<LoginRes> {
+pub async fn login(username: String, password: String) -> Option<User> {
     
     let logstr = format!("{}:{}", username, password);
     let b64 = BASE64_STANDARD.encode(logstr.as_bytes());
@@ -26,7 +21,7 @@ pub async fn login(username: String, password: String) -> Option<LoginRes> {
 
     if response.status() == 200 {
         let login = response
-            .json::<LoginRes>()
+            .json::<User>()
             .await
             .expect("deserialization failed");
         return Some(login)
