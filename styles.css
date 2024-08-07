@@ -1,2 +1,4 @@
-@import url(/public/css/main.css);
+@import url(/public/css/var.css);
+@import url(/public/css/form.css);
+@import url(/public/css/login.css);
 @import url(/public/css/map.css);
