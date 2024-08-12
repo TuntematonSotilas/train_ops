@@ -7,11 +7,7 @@ use crate::states::map_state::{MapState, Tile};
 #[function_component(MapComp)]
 pub fn map() -> Html {
 
-    let mut is_set = false;
-
     let (state, dispatch) = use_store::<MapState>();
-    
-    let tiles_state = state.tiles.clone();
 
     if !state.is_init {
         
