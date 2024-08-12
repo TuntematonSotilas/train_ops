@@ -21,7 +21,7 @@
 
 .tile {
     display: inline-block;
-    background: none;
+    background: var(--dirt);
     width: var(--tile-size);
     height: var(--tile-size);
     margin: 0;
@@ -34,6 +34,8 @@
     border-color: var(--orange);;
 }
 
-.tile__rail {
-    background: url(/public/img/rail1.png);
+.tile__img {
+    transform: rotate(-45deg);
+    height: 100%;
+    width: 100%;
 }

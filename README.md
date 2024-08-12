@@ -45,6 +45,8 @@ storeFile=key.jks
 
 ## Color Palette 
 
+### UI
+
 <div style="display:flex; flex-direction:column; width:10rem; color:black; border-radius:5px; text-align:center">
     <div style="background:#2b1c14;color:#ccc">#2b1c14</div>
     <div style="background:#5e7676">#5e7676</div>
@@ -54,4 +56,11 @@ storeFile=key.jks
     <div style="background:#0a3631;color:#ccc">#0a3631</div>
     <div style="background:#175e3e;color:#ccc">#175e3e</div>
     <div style="background:#7bc572;">#7bc572</div>
+</div>
+
+### Map
+
+
+<div style="display:flex; flex-direction:column; width:10rem; color:black; border-radius:5px; text-align:center">
+    <div style="background:#99863a;">#99863a</div>
 </div>

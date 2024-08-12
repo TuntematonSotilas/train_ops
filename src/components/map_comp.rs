@@ -10,8 +10,6 @@ pub fn map() -> Html {
     let (state, dispatch) = use_store::<MapState>();
 
     if !state.is_init {
-        
-        log::info!("use_effect");
         let tiles = vec![Tile::default(); 25];
         let mut index = 0;
         let mut ntiles = Vec::<Tile>::new();
@@ -36,15 +34,15 @@ pub fn map() -> Html {
                     { 
                         state.tiles.iter().map(|tile| {
                             html!{
-                                <div class={classes!("tile",
-                                        tile.is_rail.then(|| Some("tile__rail")))}
+                                <div class="tile"
                                     onclick={
                                         let tile_click = tile_click.clone();
                                         let tile = tile.clone();
                                         move |_| tile_click.emit(tile.index)}> 
 
-                                        {tile.index}
-                                        {tile.is_rail}
+                                        if tile.is_rail {
+                                            <img class="tile__img" src="/public/img/rail1.png" />
+                                        }
                                 </div>
                             }
                         }).collect::<Html>()
