@@ -1,6 +1,6 @@
 .login__bckg {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/public/img/rails.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(/public/img/bkg_rail.jpg);
     background-position: center;
 }
 

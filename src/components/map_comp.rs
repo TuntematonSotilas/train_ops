@@ -1,20 +1,60 @@
 
 use yew::prelude::*;
+use yewdux::prelude::*;
+
+use crate::states::map_state::{MapState, Tile};
 
 #[function_component(MapComp)]
 pub fn map() -> Html {
 
-    let tiles = (1..=25).collect::<Vec<_>>();
+    let mut is_set = false;
+
+    let (state, dispatch) = use_store::<MapState>();
+    
+    let tiles_state = state.tiles.clone();
+
+    if !state.is_init {
+        
+        log::info!("use_effect");
+        let tiles = vec![Tile::default(); 25];
+        let mut index = 0;
+        let mut ntiles = Vec::<Tile>::new();
+        for tile in &mut tiles.clone() {
+            tile.index = index;
+            index += 1;
+            ntiles.push(*tile);
+        }
+        dispatch.reduce_mut(|map| map.tiles = ntiles);
+        dispatch.reduce_mut(|map: &mut MapState| map.is_init = true);
+    }
+
+    let tile_click = Callback::from(move |index: usize| {
+        dispatch.reduce_mut(|map| map.tiles[index].is_rail = true);
+    });
+
 
     html! {
         <div class="map">
-            { 
-                tiles.iter().map(|_| { 
-                    html!{
-                        <div class="tile"></div>
+            <div class="wrapper">
+                <div class="map-ctn">
+                    { 
+                        state.tiles.iter().map(|tile| {
+                            html!{
+                                <div class={classes!("tile",
+                                        tile.is_rail.then(|| Some("tile__rail")))}
+                                    onclick={
+                                        let tile_click = tile_click.clone();
+                                        let tile = tile.clone();
+                                        move |_| tile_click.emit(tile.index)}> 
+
+                                        {tile.index}
+                                        {tile.is_rail}
+                                </div>
+                            }
+                        }).collect::<Html>()
                     }
-                }).collect::<Html>()
-            }
+                 </div>
+            </div>
         </div>
     }
 }

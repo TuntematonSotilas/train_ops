@@ -1,20 +1,39 @@
 .map {
-    display: grid;
-    grid-template-rows: repeat(5, auto);
-    grid-template-columns: repeat(5, auto);
-    justify-content: center;
-    --tile-size: 5em;
+    --board-length: 5;
+    --tile-size: 50px;
+    font-size: 0px;
+    height: 20rem;
 }
 
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.map-ctn {
+    transform: rotateX(55deg) rotateZ(45deg);
+    height: calc(var(--tile-size)*var(--board-length));
+    width: calc(var(--tile-size)*var(--board-length));
+}
+
+
 .tile {
+    display: inline-block;
     background: none;
     width: var(--tile-size);
     height: var(--tile-size);
     margin: 0;
     border: solid 1px var(--grey);
-    transition: border-color 0.25s;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .tile:hover {
     border-color: var(--orange);;
+}
+
+.tile__rail {
+    background: url(/public/img/rail1.png);
 }
