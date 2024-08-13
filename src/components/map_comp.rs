@@ -34,15 +34,13 @@ pub fn map() -> Html {
                     { 
                         state.tiles.iter().map(|tile| {
                             html!{
-                                <div class="tile"
+                                <div class={classes!(
+                                        "tile",
+                                        tile.is_rail.then(|| Some("tile--rail")))}
                                     onclick={
                                         let tile_click = tile_click.clone();
                                         let tile = tile.clone();
-                                        move |_| tile_click.emit(tile.index)}> 
-
-                                        if tile.is_rail {
-                                            <img class="tile__img" src="/public/img/rail1.png" />
-                                        }
+                                        move |_| tile_click.emit(tile.index)}>
                                 </div>
                             }
                         }).collect::<Html>()

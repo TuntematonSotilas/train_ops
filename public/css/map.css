@@ -1,6 +1,6 @@
 .map {
     --board-length: 5;
-    --tile-size: 50px;
+    --tile-size: 48px;
     font-size: 0px;
     height: 20rem;
 }
@@ -31,11 +31,9 @@
 }
 
 .tile:hover {
-    border-color: var(--orange);;
+    border-color: var(--orange);
 }
 
-.tile__img {
-    transform: rotate(-45deg);
-    height: 100%;
-    width: 100%;
+.tile--rail {
+    background: var(--dirt) url(/public/img/rail.png);
 }
