@@ -6,10 +6,12 @@ use yew_router::prelude::*;
 use yewdux::prelude::*;
 use wasm_bindgen::{JsCast, UnwrapThrowExt};
 
-use crate::{api::login_api, enums::route::Route, states::app_state::AppState};
+use crate::{api::login_api, enums::{route::Route, storage_keys::StorageKey}, services::storage, states::app_state::AppState};
 
 #[function_component(LoginComp)]
 pub fn login() -> Html {
+
+    let usersto = storage::get(StorageKey::User);
 
     let (state, dispatch) = use_store::<AppState>();
         
@@ -42,6 +44,9 @@ pub fn login() -> Html {
         wasm_bindgen_futures::spawn_local(async move {
             let login_res = login_api::login(user.to_string(), pwd.to_string()).await;
             if let Some(user) = login_res {
+                
+                storage::save(StorageKey::User, user.user_name.as_str());
+
                 dispatch.reduce_mut(|state| state.user = user);
                 navigator.push(&Route::Game);
             } else {
@@ -74,6 +79,9 @@ pub fn login() -> Html {
             <div class="container">
                 <div class="row">
                     <h1>{ i18nc.t("Connect") }</h1>
+                </div>
+                <div class="row">
+                    {"Storage :"} {usersto}
                 </div>
                 <div class="row">
                     <input type="text" placeholder={{ i18nc.t("Username") }} oninput={user_oninput} />
