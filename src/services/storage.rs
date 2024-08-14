@@ -11,6 +11,11 @@ pub fn save(key: StorageKey, value: &str) {
     get_storage().set_item(key.to_str(), value).unwrap();
 }
 
+pub fn remove(key: StorageKey) {
+    get_storage().remove_item(key.to_str()).unwrap();
+}
+
 fn get_storage() -> Storage {
     web_sys::window().unwrap().local_storage().unwrap().unwrap()
 }
+

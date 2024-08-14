@@ -20,10 +20,12 @@ pub fn user() -> Html {
     let _ = i18n.set_translation_language(state.current_lang.to_str());
 
     html! {
-        <div>
-            {"User : "}
-            {state.user.user_name.clone()}
-            <button onclick={exitclick}>{ i18n.t("Exit") }</button> 
-        </div>
+        if let Some(user) = &state.user {
+            <div>
+                {"User : "}
+                {&user.user_name}
+                <button onclick={exitclick}>{ i18n.t("Exit") }</button> 
+            </div>
+        }
     }
 }
