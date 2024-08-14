@@ -36,8 +36,13 @@ pub fn login() -> Html {
 
     let navigator = use_navigator().unwrap();
     let navigator_sett = navigator.clone();
+    let navigator_game = navigator.clone();
 
     let sett_click = Callback::from(move |route: &Route| navigator_sett.push(route));
+
+    let game_click = Callback::from(move |_| {
+        navigator_game.push(&Route::Game);
+    });
 
     let login_click = Callback::from(move |_| {
         let user = user_state.clone();
@@ -102,11 +107,16 @@ pub fn login() -> Html {
                         {&user.user_name}
                     </div>
                     <div class="row">
+                        <button onclick={game_click}>
+                            { i18nc.t("Login") }
+                        </button>
+                    </div>
+                    <div class="row login__btn--settings">
                         <button onclick={logout_click}>
                             { i18nc.t("Logout") }
                         </button>
                     </div>
-                    <div class="row login__btn--settings">
+                    <div class="row">
                         <button onclick={
                             move |_| sett_click.emit(&Route::Setting)}>
                             { i18nc.t("Settings") }
