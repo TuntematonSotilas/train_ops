@@ -7,8 +7,8 @@ use yew_router::prelude::*;
 use crate::enums::route::Route;
 use crate::states::app_state::AppState;
 
-#[function_component(UserComp)]
-pub fn user() -> Html {
+#[function_component(HudTopComp)]
+pub fn hud_top() -> Html {
 
     let navigator = use_navigator().unwrap();
     let exitclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Login));
