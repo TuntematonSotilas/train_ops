@@ -19,6 +19,7 @@ impl Lang
         }
     }
 
+    #[allow(clippy::inherent_to_string)]
     pub fn to_string(&self) -> String 
     {
        self.to_str().to_string()

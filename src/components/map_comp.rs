@@ -11,11 +11,9 @@ pub fn map() -> Html {
 
     if !state.is_init {
         let tiles = vec![Tile::default(); 25];
-        let mut index = 0;
         let mut ntiles = Vec::<Tile>::new();
-        for tile in &mut tiles.clone() {
-            tile.index = index;
-            index += 1;
+        for (i, tile) in &mut tiles.clone().iter_mut().enumerate() {
+            tile.index = i;
             ntiles.push(*tile);
         }
         dispatch.reduce_mut(|map| map.tiles = ntiles);
@@ -36,10 +34,10 @@ pub fn map() -> Html {
                             html!{
                                 <div class={classes!(
                                         "tile",
-                                        tile.is_rail.then(|| Some("tile--rail")))}
+                                        tile.is_rail.then_some("tile--rail"))}
                                     onclick={
                                         let tile_click = tile_click.clone();
-                                        let tile = tile.clone();
+                                        let tile = *tile;
                                         move |_| tile_click.emit(tile.index)}>
                                 </div>
                             }
