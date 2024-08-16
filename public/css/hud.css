@@ -1,7 +1,17 @@
 .hudtop {
     z-index: 1;
     position: fixed;
-    width: 100%;
+    width: 100vw;
+    background: #0a3631;
+    border-bottom: 1px solid #5e7676;
+    min-height: 2em;
+}
+
+.hudbott {
+    z-index: 1;
+    position: fixed;
+    top: 95vh;
+    width: 100vw;
     background: #0a3631;
     border-bottom: 1px solid #5e7676;
     min-height: 2em;

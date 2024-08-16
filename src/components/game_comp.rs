@@ -1,6 +1,6 @@
 
 use yew::prelude::*;
-use crate::components::{hud_top_comp::HudTopComp, map_comp::MapComp};
+use crate::components::{hud_top_comp::HudTopComp, hud_bott_comp::HudBottComp, map_comp::MapComp};
 
 #[function_component(GameComp)]
 pub fn game() -> Html {
@@ -9,6 +9,7 @@ pub fn game() -> Html {
         <div>
             <HudTopComp/>
             <MapComp/> 
+            <HudBottComp/>
         </div>
     }
 }
