@@ -20,12 +20,15 @@ pub fn hud_top() -> Html {
     let _ = i18n.set_translation_language(state.current_lang.to_str());
 
     html! {
-        if let Some(user) = &state.user {
-            <div>
-                {"User : "}
-                {&user.user_name}
-                <button onclick={exitclick}>{ i18n.t("Exit") }</button> 
-            </div>
-        }
+        <div class="hudtop">
+            if let Some(user) = &state.user {
+                <div>
+                    {"User : "}
+                    {&user.user_name}
+                </div>
+            }
+            
+            <button onclick={exitclick}>{ i18n.t("Exit") }</button> 
+        </div>
     }
 }

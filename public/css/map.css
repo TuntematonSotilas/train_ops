@@ -1,5 +1,5 @@
 .map {
-    --board-length: 5;
+    --board-length: 20;
     --tile-size: 48px;
     font-size: 0px;
     height: 20rem;

@@ -4,13 +4,16 @@ use yewdux::prelude::*;
 
 use crate::states::map_state::{MapState, Tile};
 
+const BOARD_LEGHT: usize = 20;
+
 #[function_component(MapComp)]
 pub fn map() -> Html {
 
     let (state, dispatch) = use_store::<MapState>();
 
     if !state.is_init {
-        let tiles = vec![Tile::default(); 25];
+        let nb_tiles = BOARD_LEGHT * BOARD_LEGHT;
+        let tiles = vec![Tile::default(); nb_tiles];
         let mut ntiles = Vec::<Tile>::new();
         for (i, tile) in &mut tiles.clone().iter_mut().enumerate() {
             tile.index = i;

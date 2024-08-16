@@ -1,0 +1,8 @@
+.hudtop {
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    background: #0a3631;
+    border-bottom: 1px solid #5e7676;
+    min-height: 2em;
+}
