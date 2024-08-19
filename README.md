@@ -60,7 +60,13 @@ storeFile=key.jks
 
 ### Map
 
-
 <div style="display:flex; flex-direction:column; width:10rem; color:black; border-radius:5px; text-align:center">
     <div style="background:#99863a;">#99863a</div>
+    <div style="background:#785f28;color:#ccc">#785f28</div>
+    <div style="background:#2027ff;color:#ccc">#2027ff</div>
+    <div style="background:#0000b0;color:#ccc">#0000b0</div>
 </div>
+
+### Sprites
+
+[SimCity-2000](https://www.spriters-resource.com/ms_dos/simcity2000/)

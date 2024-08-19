@@ -45,22 +45,21 @@ pub fn map() -> Html {
         }
     });
 
-    let touch_start = Callback::from(move |e: web_sys::TouchEvent| {
-        e.prevent_default();
+    let touch_start = Callback::from(move |_| {
         if !state_ts.is_build_mode {
             dispatch_ts.reduce_mut(|map| map.is_drag = true);
         }
     });
 
-    let touch_end = Callback::from(move |e: web_sys::TouchEvent| {
-        e.prevent_default();
+    let touch_end = Callback::from(move |_| {
         if !state_te.is_build_mode {
             dispatch_te.reduce_mut(|map| map.is_drag = false);
+            dispatch_te.reduce_mut(|map| map.prev_x = 0);
+            dispatch_te.reduce_mut(|map| map.prev_y = 0);
         }
     });
 
     let touch_move = Callback::from(move |e: web_sys::TouchEvent| {
-        e.prevent_default();
         if !state_tv.is_build_mode && state_tv.is_drag {
             let t = e.touches().get(0).unwrap();
             if state_tv.prev_x > 0 {
