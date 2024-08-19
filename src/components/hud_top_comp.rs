@@ -11,7 +11,7 @@ use crate::states::app_state::AppState;
 pub fn hud_top() -> Html {
 
     let navigator = use_navigator().unwrap();
-    let exitclick: Callback<MouseEvent> = Callback::from(move |_| navigator.push(&Route::Login));
+    let exitclick = Callback::from(move |_| navigator.push(&Route::Login));
 
     let dispatch = use_dispatch::<AppState>();
     let state = dispatch.get();

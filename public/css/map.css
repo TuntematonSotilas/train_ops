@@ -1,13 +1,14 @@
 .map {
     --board-length: 20;
     --tile-size: 48px;
-}
-
-.map__height {
     font-size: 0px;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+}
+
+.map__move {
+    position: relative;
 }
 
 .map__rotate {
@@ -28,7 +29,7 @@
     box-sizing: border-box;
 }
 
-.tile:hover {
+.map--buildmode .tile:hover {
     border-color: var(--orange);
 }
 

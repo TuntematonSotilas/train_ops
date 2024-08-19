@@ -8,7 +8,12 @@ pub struct Tile {
 
 #[derive(Default, Clone, PartialEq, Store)]
 pub struct MapState {
-    pub tiles: Vec<Tile>,
     pub is_init: bool,
     pub is_build_mode: bool,
+    pub is_drag: bool,
+    pub x: i32,
+    pub y: i32,
+    pub prev_x: i32,
+    pub prev_y: i32,
+    pub tiles: Vec<Tile>,
 }

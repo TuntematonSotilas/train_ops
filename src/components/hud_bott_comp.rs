@@ -9,7 +9,7 @@ pub fn hud_bott() -> Html {
 
     let (state, dispatch) = use_store::<MapState>();
 
-    let buildmode: Callback<MouseEvent> = Callback::from(move |_| {
+    let buildmode = Callback::from(move |_| {
         dispatch.reduce_mut(|state| state.is_build_mode = !state.is_build_mode);
     });
 
