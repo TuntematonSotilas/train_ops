@@ -10,6 +10,7 @@ const BOARD_LEGHT: usize = 20;
 pub fn map() -> Html {
 
     let (state, dispatch) = use_store::<MapState>();
+    let state_tile = state.clone();
 
     if !state.is_init {
         let nb_tiles = BOARD_LEGHT * BOARD_LEGHT;
@@ -24,30 +25,30 @@ pub fn map() -> Html {
     }
 
     let tile_click = Callback::from(move |index: usize| {
-        dispatch.reduce_mut(|map| map.tiles[index].is_rail = true);
+        if state_tile.is_build_mode {
+            dispatch.reduce_mut(|map| map.tiles[index].is_rail = true);
+        }
     });
 
 
     html! {
-        <div class="map">
-            <div class="wrapper">
-                <div class="map-ctn">
-                    { 
-                        state.tiles.iter().map(|tile| {
-                            html!{
-                                <div class={classes!(
-                                        "tile",
-                                        tile.is_rail.then_some("tile--rail"))}
-                                    onclick={
-                                        let tile_click = tile_click.clone();
-                                        let tile = *tile;
-                                        move |_| tile_click.emit(tile.index)}>
-                                </div>
-                            }
-                        }).collect::<Html>()
-                    }
-                 </div>
-            </div>
+        <div class="map map__height">
+            <div class="map__rotate">
+                { 
+                    state.tiles.iter().map(|tile| {
+                        html!{
+                            <div class={classes!(
+                                    "tile",
+                                    tile.is_rail.then_some("tile--rail"))}
+                                onclick={
+                                    let tile_click = tile_click.clone();
+                                    let tile = *tile;
+                                    move |_| tile_click.emit(tile.index)}>
+                            </div>
+                        }
+                    }).collect::<Html>()
+                }
+                </div>
         </div>
     }
 }

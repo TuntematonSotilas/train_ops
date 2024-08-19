@@ -1,18 +1,19 @@
 .hudtop {
     z-index: 1;
     position: fixed;
-    width: 100vw;
-    background: #0a3631;
-    border-bottom: 1px solid #5e7676;
+    width: 100%;
+    background: var(--dark-green);
+    border-bottom: 1px solid var(--grey);
     min-height: 2em;
+    display: flex;
 }
 
 .hudbott {
     z-index: 1;
     position: fixed;
-    top: 95vh;
-    width: 100vw;
-    background: #0a3631;
-    border-bottom: 1px solid #5e7676;
+    bottom: 0;
+    width: 100%;
+    background: var(--dark-green);
+    border-bottom: 1px solid var(--grey);
     min-height: 2em;
 }
