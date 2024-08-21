@@ -2,10 +2,11 @@
     z-index: 1;
     position: fixed;
     width: 100%;
-    background: var(--dark-green);
-    border-bottom: 1px solid var(--grey);
-    min-height: 2em;
+    background: var(--brown);
+    border-bottom: 1px solid var(--dark-grey);
+    height: 2em;
     display: flex;
+    box-shadow: 0px 0px 2px black;
 }
 
 .hudbott {
@@ -13,7 +14,50 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: var(--dark-green);
-    border-bottom: 1px solid var(--grey);
+    background: var(--brown);
+    border-top: 1px solid var(--dark-grey);
     min-height: 2em;
+    box-shadow: 0px 0px 2px black;
+}
+
+.hudtop__avatar--border {
+    width: 3em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    margin: 1px 1px 1px 3px;
+
+    border-radius: 0.6em;
+    background-image: radial-gradient(circle at top left, #cbf0f0,#313a3a);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+
+    box-shadow: 0px 0px 2px black;
+}
+
+.hudtop__avatar--border:hover, .hudtop__avatar--border:focus {
+    cursor: pointer;
+    background-image: radial-gradient(circle at top left, #ffec82, #805021);
+}
+
+.hudtop__avatar {
+    width: 92%;
+    height: 92%;
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+
+    background-image: linear-gradient(rgba(253, 248, 208, 0.3), rgba(0, 0, 0, 0.6)), url(/public/img/avatars/avatar1.png);
+    background-size: cover;
+    border-radius: 0.5em;
+}
+
+.hudtop__username {
+    color: #fde6d0;
+    font-size: 12px;
+    font-weight: 500;
+    align-self: flex-end;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 1px;
 }

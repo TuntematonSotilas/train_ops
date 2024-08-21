@@ -35,5 +35,5 @@
 }
 
 .tile--rail {
-    background: var(--dirt) url(/public/img/rail.png);
+    background: var(--dirt) url(/public/img/infra/rail.png);
 }
