@@ -21,7 +21,7 @@ h1 {
 button, input {
   outline: none;
   width: 8rem;
-  color: var(--color-text);
+  color: var(--beige);
   font-size: 1em;
   font-family: inherit;
   font-weight: 500;
