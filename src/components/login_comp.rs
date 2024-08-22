@@ -95,13 +95,13 @@ pub fn login() -> Html {
     });
 
     html! {
-        
-        if let Some(user) = &state.user {
-            <div class="login__bckg">
-                <div class="container">
-                    <div class="row">
-                        <h1>{"Train Ops"}</h1>
-                    </div>
+        <div class="login__bckg">
+            <div class="container">
+                <div class="row">
+                    <h1>{"Train Ops"}</h1>
+                </div>
+                
+                if let Some(user) = &state.user {
                     <div class="row">
                         { i18_view.t("Welcome") } 
                         {" : "} 
@@ -112,25 +112,12 @@ pub fn login() -> Html {
                             { i18_view.t("Login") }
                         </button>
                     </div>
-                    <div class="row login__btn--settings">
+                    <div class="row">
                         <button onclick={logout_click}>
                             { i18_view.t("Logout") }
                         </button>
                     </div>
-                    <div class="row">
-                        <button onclick={
-                            move |_| sett_click.emit(&Route::Setting)}>
-                            { i18_view.t("Settings") }
-                        </button>
-                    </div>
-                </div>
-            </div>
-        } else {
-            <div class="login__bckg">
-                <div class="container">
-                    <div class="row">
-                        <h1>{"Train Ops"}</h1>
-                    </div>
+                } else {
                     <div class="row">
                         <input type="text" placeholder={{ i18_view.t("Username") }} oninput={user_oninput} />
                     </div>
@@ -145,14 +132,16 @@ pub fn login() -> Html {
                             { i18_view.t("Login") }
                         </button>
                     </div>
-                    <div class="row login__btn--settings">
-                        <button onclick={
-                            move |_| sett_click.emit(&Route::Setting)}>
-                            { i18_view.t("Settings") }
-                        </button>
-                    </div>
+                }
+
+                <div class="row login__btn--bottom">
+                    <button onclick={
+                        move |_| sett_click.emit(&Route::Lang)}>
+                        { i18_view.t("Language") }
+                    </button>
                 </div>
+                
             </div>
-        }
+        </div>
     }
 }

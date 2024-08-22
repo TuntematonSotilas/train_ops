@@ -6,6 +6,6 @@ pub enum Route {
     Login,
     #[at("/menu")]
     Game,
-    #[at("/setting")]
-    Setting,
+    #[at("/lang")]
+    Lang,
 }

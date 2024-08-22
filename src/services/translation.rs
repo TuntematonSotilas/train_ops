@@ -11,7 +11,7 @@ pub fn get_translation() -> HashMap<String, Value> {
         Lang::EN.to_string(),
         serde_json::json!({
             "New Game": "New Game",
-            "Settings": "Settings",
+            "Language": "Language",
             "Welcome": "Welcome",
             "Exit": "Exit",
             "Save": "Save",
@@ -28,7 +28,7 @@ pub fn get_translation() -> HashMap<String, Value> {
         Lang::ES.to_string(),
         serde_json::json!({
             "New Game": "Nuevo juego",
-            "Settings": "Ajustes",
+            "Language": "Idioma",
             "Welcome": "Bienvenido",
             "Save": "Guardar",
             "Exit": "Dejar",
@@ -45,7 +45,7 @@ pub fn get_translation() -> HashMap<String, Value> {
         Lang::FR.to_string(),
         serde_json::json!({
             "New Game": "Nouvelle Partie",
-            "Settings": "Paramètres",
+            "Language": "Langue",
             "Welcome": "Bienvenu",
             "Save": "Enregistrer",
             "Exit": "Quitter",
@@ -62,7 +62,7 @@ pub fn get_translation() -> HashMap<String, Value> {
         Lang::DE.to_string(),
         serde_json::json!({
             "New Game": "Neues Spiel",
-            "Settings": "Einstellungen",
+            "Language": "Sprache",
             "Welcome": "Willkommen",
             "Save": "Speichern",
             "Exit": "Ausfahrt",

@@ -6,8 +6,8 @@ use yewdux::use_store;
 
 use crate::{enums::{lang::Lang, route::Route}, states::app_state::AppState};
 
-#[function_component(SettingComp)]
-pub fn setting() -> Html {
+#[function_component(LangComp)]
+pub fn lang() -> Html {
 
     let navigator = use_navigator().unwrap();
     let (state, dispatch) = use_store::<AppState>();
@@ -23,7 +23,7 @@ pub fn setting() -> Html {
     html! {
         <div class="container">
             <div class="row">
-                <h1>{ i18n.t("Settings") }</h1>
+                <h1>{ i18n.t("Language") }</h1>
             </div>
             <div class="row">
                 <button onclick={

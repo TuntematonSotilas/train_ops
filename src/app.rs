@@ -4,7 +4,7 @@ use yew_i18n::I18nProvider;
 
 use crate::enums::lang::Lang;
 use crate::enums::route::Route;
-use crate::components::{game_comp::GameComp, setting_comp::SettingComp, login_comp::LoginComp};
+use crate::components::{game_comp::GameComp, lang_comp::LangComp, login_comp::LoginComp};
 use crate::services::translation::get_translation;
 
 #[function_component(App)]
@@ -32,6 +32,6 @@ fn switch(route: Route) -> Html {
     match route {
         Route::Login => html! { <LoginComp/> },
         Route::Game => html! { <GameComp/> },
-        Route::Setting => html! { <SettingComp/> },
+        Route::Lang => html! { <LangComp/> },
     }
 }
