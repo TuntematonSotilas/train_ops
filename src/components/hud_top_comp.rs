@@ -21,12 +21,10 @@ pub fn hud_top() -> Html {
 
     html! {
         <div class="hudtop">
-            <div class="hudtop__avatar--border">
-                <div class="hudtop__avatar">
-                    if let Some(user) = &state.user {
-                        <div class="hudtop__username">{&user.user_name}</div>
-                    }
-                </div>
+            <div class="hudtop__avatar hudtop__avatar--1">
+                if let Some(user) = &state.user {
+                    <div class="hudtop__username">{&user.user_name}</div>
+                }
             </div>
             <button onclick={exitclick}>{ i18n.t("Exit") }</button> 
         </div>

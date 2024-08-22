@@ -20,44 +20,31 @@
     box-shadow: 0px 0px 2px black;
 }
 
-.hudtop__avatar--border {
-    width: 3em;
-    height: 3em;
-    display: flex;
-    justify-content: center;
-    margin: 1px 1px 1px 3px;
-
-    border-radius: 0.6em;
-    background-image: radial-gradient(circle at top left, #cbf0f0,#313a3a);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-
-    box-shadow: 0px 0px 2px black;
-}
-
-.hudtop__avatar--border:hover, .hudtop__avatar--border:focus {
-    cursor: pointer;
-    background-image: radial-gradient(circle at top left, #ffec82, #805021);
-}
-
 .hudtop__avatar {
-    width: 92%;
-    height: 92%;
     display: flex;
     justify-content: center;
-    margin: 2px;
-
-    background-image: linear-gradient(rgba(253, 248, 208, 0.3), rgba(0, 0, 0, 0.6)), url(/public/img/avatars/avatar1.png);
+    width: 2.5em;
+    height: 2.5em;
+    margin: 1px;
+    border: 1px solid var(--grey);
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px black;
     background-size: cover;
-    border-radius: 0.5em;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.hudtop__avatar:hover, .hudtop__avatar--border:focus {
+    border-color: var(--orange);
+}
+
+.hudtop__avatar--1 {
+    background-image: linear-gradient(rgba(253, 248, 208, 0.3), rgba(0, 0, 0, 0.6)), url(/public/img/avatars/avatar1.png);
 }
 
 .hudtop__username {
-    color: #fde6d0;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
     align-self: flex-end;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 1px;
 }
