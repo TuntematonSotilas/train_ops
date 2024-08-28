@@ -29,4 +29,5 @@ impl User
 pub struct AppState {
     pub current_lang: Lang,
     pub user: Option<User>,
+    pub in_game: bool,
 }

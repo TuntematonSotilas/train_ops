@@ -13,6 +13,8 @@ pub fn login() -> Html {
 
     let (state, dispatch) = use_store::<AppState>();
 
+    dispatch.reduce_mut(|state| state.in_game = false);
+
     let mut i18n = use_translation();
     let _ = i18n.set_translation_language(state.current_lang.to_str());
     let i18_view = i18n.clone();
@@ -36,8 +38,7 @@ pub fn login() -> Html {
     }
 
     let navigator = use_navigator().unwrap();
-    let navigator_sett = navigator.clone();
-    let navigator_game = navigator.clone();
+    let navigator_btn = navigator.clone();
 
     let user_oninput = Callback::from(move |e: InputEvent| {
         let target: HtmlInputElement = e
@@ -57,11 +58,8 @@ pub fn login() -> Html {
         pwd_oc.set(target.value());
     });    
 
-    let sett_click = Callback::from(move |route: &Route| navigator_sett.push(route));
-
-    let game_click = Callback::from(move |_| {
-        navigator_game.push(&Route::Game);
-    });
+    let btn_click = Callback::from(move |route: &Route| navigator_btn.push(route));
+    let btn_cl = btn_click.clone();
 
     let login_click = Callback::from(move |_| {
         let pwd = pwd_state.clone();
@@ -108,7 +106,7 @@ pub fn login() -> Html {
                         {&user.user_name}
                     </div>
                     <div class="row">
-                        <button onclick={game_click}>
+                        <button onclick={ move |_| btn_click.emit(&Route::Game)}>
                             { i18_view.t("Login") }
                         </button>
                     </div>
@@ -135,8 +133,7 @@ pub fn login() -> Html {
                 }
 
                 <div class="row login__btn--bottom">
-                    <button onclick={
-                        move |_| sett_click.emit(&Route::Lang)}>
+                    <button onclick={ move |_| btn_cl.emit(&Route::Lang)}>
                         { i18_view.t("Language") }
                     </button>
                 </div>

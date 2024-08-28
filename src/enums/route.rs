@@ -8,4 +8,6 @@ pub enum Route {
     Game,
     #[at("/lang")]
     Lang,
+    #[at("/profil")]
+    Profil
 }

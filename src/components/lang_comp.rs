@@ -11,10 +11,16 @@ pub fn lang() -> Html {
 
     let navigator = use_navigator().unwrap();
     let (state, dispatch) = use_store::<AppState>();
+    let state_redi = state.clone();
 
     let langclick = Callback::from(move |lang: &Lang| {
         dispatch.reduce_mut(|state| state.current_lang = lang.clone());
-        navigator.push(&Route::Login)
+        let route = if state_redi.in_game {
+            Route::Game
+        } else {
+            Route::Login
+        };
+        navigator.push(&route)
     });
     
     let mut i18n = use_translation();
