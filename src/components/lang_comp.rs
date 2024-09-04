@@ -16,7 +16,7 @@ pub fn lang() -> Html {
     let langclick = Callback::from(move |lang: &Lang| {
         dispatch.reduce_mut(|state| state.current_lang = lang.clone());
         let route = if state_redi.in_game {
-            Route::Game
+            Route::Profil
         } else {
             Route::Login
         };

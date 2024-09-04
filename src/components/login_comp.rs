@@ -12,7 +12,7 @@ use crate::{api::login_api, enums::{route::Route, storage_keys::StorageKey}, ser
 pub fn login() -> Html {
 
     let (state, dispatch) = use_store::<AppState>();
-
+    
     dispatch.reduce_mut(|state| state.in_game = false);
 
     let mut i18n = use_translation();
@@ -28,17 +28,22 @@ pub fn login() -> Html {
     let err_view = error_state.clone();
 
     let disp_login = dispatch.clone();
-    let disp_logout = dispatch.clone();
     let disp_load = dispatch.clone();
-    
-    if let Some(usersto) = User::from_storage() {
-        let disp = disp_load.clone();
-        // Save the user in the state
-        disp.reduce_mut(|state| state.user = Some(usersto));
-    }
 
     let navigator = use_navigator().unwrap();
     let navigator_btn = navigator.clone();
+
+    if let Some(usersto) = User::from_storage() {
+        // If user found in the local storage 
+        log::info!("storage found");
+        let disp = disp_load.clone();
+        // Save the user in the state
+        disp.reduce_mut(|state| state.user = Some(usersto));
+        if !state.in_game {
+            // Enter the game if the user not commes from the Game
+            navigator.push(&Route::Game);
+        }
+    }
 
     let user_oninput = Callback::from(move |e: InputEvent| {
         let target: HtmlInputElement = e
@@ -59,7 +64,7 @@ pub fn login() -> Html {
     });    
 
     let btn_click = Callback::from(move |route: &Route| navigator_btn.push(route));
-    let btn_cl = btn_click.clone();
+    let btn_lang = btn_click.clone();
 
     let login_click = Callback::from(move |_| {
         let pwd = pwd_state.clone();
@@ -87,11 +92,6 @@ pub fn login() -> Html {
         });
     });
 
-    let logout_click = Callback::from(move |_| {
-        storage::remove(StorageKey::User);
-        disp_logout.reduce_mut(|state| state.user = None);
-    });
-
     html! {
         <div class="login__bckg">
             <div class="container">
@@ -108,11 +108,6 @@ pub fn login() -> Html {
                     <div class="row">
                         <button onclick={ move |_| btn_click.emit(&Route::Game)}>
                             { i18_view.t("Login") }
-                        </button>
-                    </div>
-                    <div class="row">
-                        <button onclick={logout_click}>
-                            { i18_view.t("Logout") }
                         </button>
                     </div>
                 } else {
@@ -133,7 +128,7 @@ pub fn login() -> Html {
                 }
 
                 <div class="row login__btn--bottom">
-                    <button onclick={ move |_| btn_cl.emit(&Route::Lang)}>
+                    <button onclick={ move |_| btn_lang.emit(&Route::Lang)}>
                         { i18_view.t("Language") }
                     </button>
                 </div>
