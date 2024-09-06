@@ -1,7 +1,6 @@
 
 .avatar {
-    display: flex;
-    justify-content: center;
+    position: relative;
     width: 2.5em;
     height: 2.5em;
     margin: 1px;
@@ -11,19 +10,25 @@
     background-size: cover;
     cursor: pointer;
     transition: border-color 0.25s;
+    background-image: linear-gradient(rgba(253, 248, 208, 0.3), rgba(0, 0, 0, 0.6)); 
 }
 
 .avatar:hover, .avatar:focus {
     border-color: var(--orange);
 }
 
-.avatar--1 {
-    background-image: linear-gradient(rgba(253, 248, 208, 0.3), rgba(0, 0, 0, 0.6)), url(/public/img/avatars/avatar1.png);
+.avatar__img {
+    position: relative;
+    z-index: -1;
+    width: 100%;
 }
 
 .avatar__username {
+    position: absolute;
+    bottom: 0;
+    width: inherit;
+    text-align: center;
     font-size: 11px;
-    align-self: flex-end;
     overflow: hidden;
     text-overflow: ellipsis;
 }

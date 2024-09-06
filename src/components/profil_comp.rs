@@ -31,8 +31,9 @@ pub fn profil() -> Html {
     html! {
         <div class="container">
             <div class="row">
-                <div class="avatar avatar--1">
+                <div class="avatar">
                     if let Some(user) = &state.user {
+                        <img class="avatar__img" src={format!("/public/img/avatars/{0}.png",&user.avatar)}/>
                         <div class="avatar__username">{&user.user_name}</div>
                     }
                 </div>
