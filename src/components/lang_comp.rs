@@ -31,7 +31,7 @@ pub fn lang() -> Html {
     let _ = i18n.set_translation_language(state.lang.to_str());
     
     html! {
-        <div class="container">
+        <div class="container menu">
             <div class="row">
                 <h1>{ i18n.t("Language") }</h1>
             </div>

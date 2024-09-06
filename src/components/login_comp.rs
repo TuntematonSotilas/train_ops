@@ -100,7 +100,7 @@ pub fn login() -> Html {
 
     html! {
         <div class="login__bckg">
-            <div class="container">
+            <div class="container menu">
                 <div class="row">
                     <h1>{"Train Ops"}</h1>
                 </div>

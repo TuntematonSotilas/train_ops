@@ -20,6 +20,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Username": "Username",
             "Password": "Password",
             "Username or password invalid" : "Username or password invalid",
+            "Profile": "Profile",
         }),
     );
 
@@ -37,6 +38,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Username": "Identificador",
             "Password": "Contraseña",
             "Username or password invalid" : "Identificador o contraseña inválidos",
+            "Profile": "Perfil",
         }),
     );
 
@@ -54,6 +56,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Username": "Identifiant",
             "Password": "Mot de passe",
             "Username or password invalid" : "Identifiant ou mot de passe invalide",
+            "Profile": "Profil",
         }),
     );
 
@@ -71,6 +74,7 @@ pub fn get_translation() -> HashMap<String, Value> {
             "Username": "Identifikator",
             "Password": "Passwort",
             "Username or password invalid" : "Identifikator oder passwort ungültig",
+            "Profile": "Profil",
         }),
     );
     

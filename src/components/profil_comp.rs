@@ -30,7 +30,13 @@ pub fn profil() -> Html {
 
     html! {
         <div class="container">
-            <div class="row">
+            <header>
+                { i18n.t("Profile") }
+                <button class="close" onclick={ move |_| btn_back.emit(&Route::Game)}>
+                    {"X"}
+                </button> 
+            </header>
+            <div class="row menu">
                 <div class="avatar">
                     if let Some(user) = &state.user {
                         <img class="avatar__img" src={format!("/public/img/avatars/{0}.png",&user.avatar)}/>
@@ -46,11 +52,6 @@ pub fn profil() -> Html {
             <div class="row">
                 <button onclick={logout_click}>
                     { i18n.t("Logout") }
-                </button> 
-            </div>
-            <div class="row">
-                <button onclick={ move |_| btn_back.emit(&Route::Game)}>
-                    {"X"}
                 </button> 
             </div>
         </div>

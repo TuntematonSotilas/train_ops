@@ -1,12 +1,20 @@
 .container {
   margin: 0;
-  padding-top: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
-  
+
+header {
+  border-bottom: 1px solid var(--dark-grey);
+  height: 1.8em;
+}
+
+.menu {  
+  padding-top: 10vh;
+}
+
 .row {
   display: flex;
   justify-content: center;
@@ -45,6 +53,15 @@ input::placeholder {
 button {
   cursor: pointer;
   background-color: var(--green);
+}
+
+.close {
+  padding-top: 0.4em;
+  position: absolute;
+  right: 3px;
+  width: 1.8em;
+  height: 1.8em;
+  background-color: var(--dark-orange);
 }
 
 input:hover, button:hover, input:focus, button:active {
