@@ -4,7 +4,7 @@ use yew_i18n::use_translation;
 use yew_router::prelude::*;
 use yewdux::use_store;
 
-use crate::{enums::{lang::Lang, route::Route}, states::app_state::AppState};
+use crate::{enums::{lang::Lang, route::Route, storage_keys::StorageKey}, services::storage, states::app_state::AppState};
 
 #[function_component(LangComp)]
 pub fn lang() -> Html {
@@ -14,7 +14,11 @@ pub fn lang() -> Html {
     let state_redi = state.clone();
 
     let langclick = Callback::from(move |lang: &Lang| {
-        dispatch.reduce_mut(|state| state.current_lang = lang.clone());
+        // Save the lang in the state
+        dispatch.reduce_mut(|state| state.lang = lang.clone());
+        // Save the lang in local storage
+        storage::save(StorageKey::Lang, lang.to_str());
+        // Redirect
         let route = if state_redi.in_game {
             Route::Profil
         } else {
@@ -24,7 +28,7 @@ pub fn lang() -> Html {
     });
     
     let mut i18n = use_translation();
-    let _ = i18n.set_translation_language(state.current_lang.to_str());
+    let _ = i18n.set_translation_language(state.lang.to_str());
     
     html! {
         <div class="container">

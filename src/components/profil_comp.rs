@@ -4,7 +4,7 @@ use yew_i18n::use_translation;
 use yew_router::hooks::use_navigator;
 use yewdux::use_store;
 
-use crate::{enums::{route::Route, storage_keys::StorageKey}, services::storage, states::app_state::AppState};
+use crate::{enums::route::Route, services::storage, states::app_state::AppState};
 
 #[function_component(ProfilComp)]
 pub fn profil() -> Html {
@@ -17,13 +17,13 @@ pub fn profil() -> Html {
     let (state, dispatch) = use_store::<AppState>();
         
     let mut i18n = use_translation();
-    let _ = i18n.set_translation_language(state.current_lang.to_str());
+    let _ = i18n.set_translation_language(state.lang.to_str());
     
     let btn_click = Callback::from(move |route: &Route| navigator_lang.push(route));
     let btn_back = btn_click.clone();
 
     let logout_click = Callback::from(move |_| {
-        storage::remove(StorageKey::User);
+        storage::clear();
         dispatch.reduce_mut(|state| state.user = None);
         navigator_logout.push(&Route::Login);
     });
@@ -31,9 +31,11 @@ pub fn profil() -> Html {
     html! {
         <div class="container">
             <div class="row">
-                if let Some(user) = &state.user {
-                   {&user.user_name}
-                }
+                <div class="avatar avatar--1">
+                    if let Some(user) = &state.user {
+                        <div class="avatar__username">{&user.user_name}</div>
+                    }
+                </div>
             </div>
             <div class="row">
                 <button onclick={ move |_| btn_click.emit(&Route::Lang) }>

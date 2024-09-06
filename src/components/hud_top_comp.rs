@@ -17,9 +17,9 @@ pub fn hud_top() -> Html {
 
     html! {
         <div class="hudtop">
-            <div class="hudtop__avatar hudtop__avatar--1" onclick={profil_click}>
+            <div class="avatar avatar--1" onclick={profil_click}>
                 if let Some(user) = &state.user {
-                    <div class="hudtop__username">{&user.user_name}</div>
+                    <div class="avatar__username">{&user.user_name}</div>
                 }
             </div>
         </div>

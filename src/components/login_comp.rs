@@ -6,7 +6,7 @@ use yew_router::prelude::*;
 use yewdux::prelude::*;
 use wasm_bindgen::{JsCast, UnwrapThrowExt};
 
-use crate::{api::login_api, enums::{route::Route, storage_keys::StorageKey}, services::storage, states::app_state::{AppState, User}};
+use crate::{api::login_api, enums::{lang::Lang, route::Route, storage_keys::StorageKey}, services::storage, states::app_state::{AppState, User}};
 
 #[function_component(LoginComp)]
 pub fn login() -> Html {
@@ -15,9 +15,7 @@ pub fn login() -> Html {
     
     dispatch.reduce_mut(|state| state.in_game = false);
 
-    let mut i18n = use_translation();
-    let _ = i18n.set_translation_language(state.current_lang.to_str());
-    let i18_view = i18n.clone();
+   
 
     let user_state = use_state(String::new);
     let pwd_state = use_state(String::new);
@@ -33,12 +31,20 @@ pub fn login() -> Html {
     let navigator = use_navigator().unwrap();
     let navigator_btn = navigator.clone();
 
-    if let Some(usersto) = User::from_storage() {
+    if let Some(lang_sto) = Lang::from_storage() {
+        // If lang found in the local storage 
+        // Save the lang in the state
+        disp_load.reduce_mut(|state| state.lang = lang_sto);
+    }
+
+    let mut i18n = use_translation();
+    let _ = i18n.set_translation_language(state.lang.to_str());
+    let i18_view = i18n.clone();
+
+    if let Some(user_sto) = User::from_storage() {
         // If user found in the local storage 
-        log::info!("storage found");
-        let disp = disp_load.clone();
         // Save the user in the state
-        disp.reduce_mut(|state| state.user = Some(usersto));
+        disp_load.reduce_mut(|state| state.user = Some(user_sto));
         if !state.in_game {
             // Enter the game if the user not commes from the Game
             navigator.push(&Route::Game);

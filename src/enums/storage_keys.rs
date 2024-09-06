@@ -1,5 +1,6 @@
 pub enum StorageKey {
     User,
+    Lang,
 }
 
 impl StorageKey 
@@ -8,6 +9,7 @@ impl StorageKey
     {
         match &self {
             StorageKey::User => "user",
+            StorageKey::Lang => "lang",
         }
     }
 }

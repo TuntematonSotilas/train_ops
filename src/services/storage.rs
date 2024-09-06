@@ -19,3 +19,6 @@ fn get_storage() -> Storage {
     web_sys::window().unwrap().local_storage().unwrap().unwrap()
 }
 
+pub fn clear() {
+    get_storage().clear().unwrap();
+}

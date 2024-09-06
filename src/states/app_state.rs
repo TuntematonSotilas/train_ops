@@ -27,7 +27,7 @@ impl User
 
 #[derive(Default, Clone, PartialEq, Store)]
 pub struct AppState {
-    pub current_lang: Lang,
+    pub lang: Lang,
     pub user: Option<User>,
     pub in_game: bool,
 }
