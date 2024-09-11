@@ -20,7 +20,8 @@ pub fn profil() -> Html {
     let _ = i18n.set_translation_language(state.lang.to_str());
     
     let btn_click = Callback::from(move |route: &Route| navigator_lang.push(route));
-    let btn_back = btn_click.clone();
+    let btn_avatar = btn_click.clone();
+    let btn_lang = btn_click.clone();
 
     let logout_click = Callback::from(move |_| {
         storage::clear();
@@ -32,20 +33,25 @@ pub fn profil() -> Html {
         <div class="container">
             <header>
                 { i18n.t("Profile") }
-                <button class="close" onclick={ move |_| btn_back.emit(&Route::Game)}>
+                <button class="close" onclick={ move |_| btn_click.emit(&Route::Game)}>
                     {"X"}
                 </button> 
             </header>
             <div class="row menu">
                 <div class="avatar">
                     if let Some(user) = &state.user {
-                        <img class="avatar__img" src={format!("/public/img/avatars/{0}.png",&user.avatar)}/>
+                        <img class="avatar__img" src={format!("/public/img/avatars/{0}.png",&user.avatar.to_str())}/>
                         <div class="avatar__username">{&user.user_name}</div>
                     }
                 </div>
             </div>
             <div class="row">
-                <button onclick={ move |_| btn_click.emit(&Route::Lang) }>
+                <button onclick={ move |_| btn_avatar.emit(&Route::Avatar) }>
+                    { "Avatar" }
+                </button>
+            </div>
+            <div class="row">
+                <button onclick={ move |_| btn_lang.emit(&Route::Lang) }>
                     { i18n.t("Language") }
                 </button>
             </div>

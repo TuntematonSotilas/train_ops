@@ -9,5 +9,7 @@ pub enum Route {
     #[at("/lang")]
     Lang,
     #[at("/profil")]
-    Profil
+    Profil,
+    #[at("/avatar")]
+    Avatar
 }

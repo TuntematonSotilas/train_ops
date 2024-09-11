@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
 use yewdux::Store;
-use crate::{enums::{lang::Lang, storage_keys::StorageKey}, services::storage};
+use crate::{enums::{avatar::Avatar, lang::Lang, storage_keys::StorageKey}, services::storage};
 
 #[derive(Default, Clone, PartialEq, Serialize, Deserialize)]
 pub struct User {
     pub id: String,  
     pub user_name: String,
-    pub avatar: String,
+    pub avatar: Avatar,
 }
 
 impl User 

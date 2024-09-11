@@ -9,6 +9,9 @@
 header {
   border-bottom: 1px solid var(--dark-grey);
   height: 1.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu {  
