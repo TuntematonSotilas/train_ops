@@ -11,8 +11,7 @@ pub struct User {
 
 impl User 
 {
-    pub fn to_json(&self) -> String 
-    {
+    pub fn to_json(&self) -> String {
         serde_json::to_string(&self).ok().unwrap()
     }
 

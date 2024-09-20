@@ -15,8 +15,6 @@ pub fn login() -> Html {
     
     dispatch.reduce_mut(|state| state.in_game = false);
 
-   
-
     let user_state = use_state(String::new);
     let pwd_state = use_state(String::new);
     let error_state = use_state(String::new);

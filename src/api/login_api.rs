@@ -3,7 +3,7 @@ use gloo_net::http::Request;
 
 use crate::states::app_state::User;
 
-const BASE_URI: &str = "https://eu-west-2.aws.data.mongodb-api.com/app/trainops-ciefkxv/endpoint/";
+const BASE_URI: &str = "https://squealing-aggy-trainops-7f2c5136.koyeb.app/";
 const AUTH_HEAD: &str = "Authorization";
 
 pub async fn login(username: String, password: String) -> Option<User> {
