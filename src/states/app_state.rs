@@ -4,8 +4,8 @@ use crate::{enums::{avatar::Avatar, lang::Lang, storage_keys::StorageKey}, servi
 
 #[derive(Default, Clone, PartialEq, Serialize, Deserialize)]
 pub struct User {
-    pub id: String,  
-    pub user_name: String,
+    pub _id: String,
+    pub username: String,
     pub avatar: Avatar,
 }
 

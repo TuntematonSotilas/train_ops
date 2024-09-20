@@ -107,7 +107,7 @@ pub fn login() -> Html {
                     <div class="row">
                         { i18_view.t("Welcome") } 
                         {" : "} 
-                        {&user.user_name}
+                        {&user.username}
                     </div>
                     <div class="row">
                         <button onclick={ move |_| btn_click.emit(&Route::Game)}>

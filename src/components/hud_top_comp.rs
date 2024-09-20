@@ -20,7 +20,7 @@ pub fn hud_top() -> Html {
             <div class="avatar" onclick={profil_click}>
                 if let Some(user) = &state.user {
                     <img class="avatar__img" src={format!("/public/img/avatars/{0}.png",&user.avatar.to_str())}/>
-                    <div class="avatar__username">{&user.user_name}</div>
+                    <div class="avatar__username">{&user.username}</div>
                 }
             </div>
         </div>
