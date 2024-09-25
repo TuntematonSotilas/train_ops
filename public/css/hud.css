@@ -19,3 +19,26 @@
     min-height: 2em;
     box-shadow: 0px 0px 2px black;
 }
+
+.hudbott__btn {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 1px;
+    border: 1px solid var(--grey);
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px black;
+    background-size: cover;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    background-color: var(--green);
+}
+
+.hudbott__btn:hover, .hudbott__btn:focus {
+    border-color: var(--orange);
+}
+
+.hudbott__icon {
+    position: relative;
+    width: 100%;
+    transform: rotateX(55deg) rotateZ(45deg);
+}
