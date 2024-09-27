@@ -10,13 +10,32 @@
 }
 
 .hudbott {
-    z-index: 1;
     position: fixed;
+    display: flex;
+    flex-direction: column;
     bottom: 0;
     width: 100%;
+}
+
+.hudbott__toprow {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 7em;
+    left: 2.6em;
     background: var(--brown);
     border-top: 1px solid var(--dark-grey);
-    min-height: 2em;
+    box-shadow: 0px 0px 2px black;
+    border-top-left-radius: 2px;
+    border-top-left-radius: 2px;
+    padding-left: 2px;
+}
+
+.hudbott__mainrow {
+    display: flex;
+    flex-direction: row;
+    background: var(--brown);
+    border-top: 1px solid var(--dark-grey);
     box-shadow: 0px 0px 2px black;
 }
 

@@ -18,6 +18,7 @@ pub fn map() -> Html {
     let state_md = state.clone();
     let state_mu = state.clone();
     let state_mv = state.clone();
+    let state_cl = state.clone();
 
     let dispatch_tile = dispatch.clone();
     let dispatch_ts = dispatch.clone();
@@ -41,7 +42,7 @@ pub fn map() -> Html {
 
     let tile_click = Callback::from(move |index: usize| {
         if state_tile.is_build_mode {
-            dispatch_tile.reduce_mut(|map| map.tiles[index].is_rail = true);
+            dispatch_tile.reduce_mut(|map| map.tiles[index].infra = Some(state_cl.infra));
         }
     });
 
@@ -115,12 +116,17 @@ pub fn map() -> Html {
                 <div class="map__rotate">
                     { 
                         state.tiles.iter().map(|tile| {
+                            let mut tile_class = String::new();
+                            if let Some(infra) = tile.infra {
+                                let class = infra.to_tile_class();
+                                tile_class = class;
+                            }
                             html!{
-                                <div class={classes!("tile", tile.is_rail.then_some("tile--rail"))}
+                                <div class={classes!("tile", tile_class)}
                                     onclick={
                                         let tile_click = tile_click.clone();
                                         let tile = *tile;
-                                        move |_| tile_click.emit(tile.index)}>
+                                        move |_| tile_click.emit(tile.index)} >
                                 </div>
                             }
                         }).collect::<Html>()

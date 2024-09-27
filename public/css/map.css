@@ -37,3 +37,8 @@
 .tile--rail {
     background: var(--dirt) url(/public/img/infra/rail.png);
 }
+.tile--station {
+    background: var(--dirt) url(/public/img/infra/station.png);
+    rotate: 270deg;
+}
+
