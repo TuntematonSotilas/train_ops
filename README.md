@@ -6,7 +6,7 @@ Made with Tauri and Yew.
 
 ## Installation 
 
-* Tauri CLI : `cargo install tauri-cli --version "^2.0.0-rc"`
+* Tauri CLI : `cargo install tauri-cli --version "^2.0.0"`
 * Trunk : `cargo install trunk` 
 * Others prerequisites : [tauri-prerequisites](https://tauri.app/v1/guides/getting-started/prerequisites/)
 
