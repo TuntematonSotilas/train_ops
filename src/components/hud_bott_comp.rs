@@ -16,9 +16,10 @@ pub fn hud_bott() -> Html {
         disp_view.reduce_mut(|state| state.is_build_mode = false);
     });
     let menu_build = Callback::from(move |_| {
-        disp_menu_build.reduce_mut(|state| state.is_menu_build = !state.is_menu_build);
+        disp_menu_build.reduce_mut(|state| state.is_menu_build_open = !state.is_menu_build_open);
     });
     let build = Callback::from(move |infra: &Infra| {
+        disp_build.reduce_mut(|state| state.is_menu_build_open = false);
         disp_build.reduce_mut(|state| state.is_build_mode = true);
         disp_build.reduce_mut(|state| state.infra = infra.clone());
     });
@@ -26,7 +27,7 @@ pub fn hud_bott() -> Html {
 
     html! {
         <div class="hudbott">
-            if state.is_menu_build {
+            if state.is_menu_build_open {
                 <div class="hudbott__toprow">
                     <div class="hudbott__btn" onclick={move |_| build.emit(&Infra::Rail)}>
                         <img class="hudbott__icon" src="/public/img/infra/rail.png"/>
@@ -37,10 +38,12 @@ pub fn hud_bott() -> Html {
                 </div>
             }
             <div class="hudbott__mainrow">
-                <div class="hudbott__btn" onclick={view}>
+                <div class={classes!("hudbott__btn", (!state.is_build_mode).then_some("hudbott__btn--active"))} 
+                    onclick={view}>
                     <img class="hudbott__icon" src="/public/img/icons/map.png"/>
                 </div>
-                <div class="hudbott__btn" onclick={menu_build}>
+                <div class={classes!("hudbott__btn", state.is_build_mode.then_some("hudbott__btn--active"))} 
+                     onclick={menu_build}>
                     <img class="hudbott__icon" src="/public/img/infra/rail.png"/>
                 </div>
             </div>

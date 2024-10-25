@@ -56,6 +56,11 @@
     border-color: var(--orange);
 }
 
+.hudbott__btn--active {
+    background-color: var(--med-green);
+}
+  
+
 .hudbott__icon {
     position: relative;
     width: 100%;
