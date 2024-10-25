@@ -34,8 +34,6 @@ pub fn draw_map(state: Rc<MapState>) {
 
     let map_x = state.x as f64;
     let map_y = state.y as f64;
-    
-    log::info!("map_x:{0}", map_x);
 
     for column in 0..MAP_SIZE {
         for row in 0..MAP_SIZE {

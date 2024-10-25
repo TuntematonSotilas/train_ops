@@ -16,4 +16,7 @@ pub struct MapState {
     pub is_drag: bool,
     pub x: i32,
     pub y: i32,
+    pub prev_x: i32,
+    pub prev_y: i32,
+    
 }
