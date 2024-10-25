@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 
-const MAP_SIZE: i32 = 10;
+const MAP_SIZE: i32 = 30;
 const TILE_SIZE: f64 = 32.;
 const DIRT: &str = "#99863a";
 const DARK_DIRT: &str = "#785f28";
@@ -21,7 +21,7 @@ pub fn draw_map() {
     let vh = window.inner_height().unwrap().as_f64().unwrap() as u32 - 10;
     canvas.set_width(vw);
     canvas.set_height(vh);
-
+    
     let ctx = canvas
         .get_context("2d")
         .unwrap()
@@ -29,12 +29,12 @@ pub fn draw_map() {
         .dyn_into::<web_sys::CanvasRenderingContext2d>()
         .unwrap();
     
-    let margin = 50.;
+    ctx.clear_rect(0., 0., canvas.width() as f64, canvas.height() as f64);
 
     for column in 0..MAP_SIZE {
         for row in 0..MAP_SIZE {
-            let x = margin + column as f64 * TILE_SIZE;
-            let y = margin + row as f64 * TILE_SIZE;
+            let x = column as f64 * TILE_SIZE;
+            let y = row as f64 * TILE_SIZE;
             ctx.set_fill_style(&DIRT.into());
             ctx.set_stroke_style(&DARK_DIRT.into());
             log::info!("{0} {1}",x, y);
