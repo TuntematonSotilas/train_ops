@@ -33,7 +33,7 @@ pub fn hud_bott() -> Html {
                         <img class="hudbott__icon" src="/public/img/infra/rail.png"/>
                     </div>
                     <div class="hudbott__btn" onclick={move |_| build_station.emit(&Infra::Station)}>
-                        <img class="hudbott__icon" src="/public/img/infra/station.png"/>
+                        {"S"}
                     </div>
                 </div>
             }
