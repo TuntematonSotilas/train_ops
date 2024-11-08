@@ -1,8 +1,12 @@
 use yewdux::Store;
 
+const MAP_SIZE: usize = 30;
+pub const TILE_SIZE: i32 = 32;
+
 #[derive(Default, Copy, Clone, PartialEq, Store)]
 pub enum Infra {
     #[default]
+    None,
     Rail,
     Station,
 }
@@ -18,5 +22,5 @@ pub struct MapState {
     pub y: i32,
     pub prev_x: i32,
     pub prev_y: i32,
-    
+    pub tiles: [[Infra; MAP_SIZE]; MAP_SIZE],
 }

@@ -2,7 +2,7 @@
 use yew::prelude::*;
 use yewdux::prelude::*;
 
-use crate::{services::canvas, states::map_state::MapState};
+use crate::{services::canvas, states::map_state::{Infra, MapState, TILE_SIZE}};
 
 #[function_component(MapComp)]
 pub fn map() -> Html {
@@ -27,7 +27,16 @@ pub fn map() -> Html {
 
     let mouse_down = Callback::from(move |e: MouseEvent| {
         e.prevent_default();
-        if !state_md.is_build_mode {
+        if state_md.is_build_mode {
+            let mut tiles = state_md.tiles;
+            let i = ((e.x() - state_md.x) / TILE_SIZE) as usize;
+            let j = ((e.y() - state_md.y) / TILE_SIZE) as usize;
+            log::info!("i={i} j={j}");
+            tiles[i][j] = Infra::Rail;
+            dispatch_md.reduce_mut(|map| map.tiles = tiles);
+            let state_draw = state_md.clone();
+            canvas::draw_map(state_draw);
+        } else {
             dispatch_md.reduce_mut(|map| map.is_drag = true);
         }
     });
@@ -86,13 +95,22 @@ pub fn map() -> Html {
     });
     
     html! {
-        <canvas id="map" class="map" 
-            onmousedown={mouse_down}
-            onmouseup={mouse_up}
-            onmousemove={mouse_move}
-            ontouchstart={touch_start}
-            ontouchend={touch_end}
-            ontouchmove={touch_move}>
-        </canvas>
+        <>
+            <canvas id="map" class="map" 
+                onmousedown={mouse_down}
+                onmouseup={mouse_up}
+                onmousemove={mouse_move}
+                ontouchstart={touch_start}
+                ontouchend={touch_end}
+                ontouchmove={touch_move}>
+            </canvas>
+
+      /*       <div class="infra">
+                <img id="rail"
+                    src="/public/infra/rail.png"
+                    width="32"
+                    height="32" />
+            </div> */
+        </>
     }
 }

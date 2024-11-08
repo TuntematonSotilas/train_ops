@@ -2,3 +2,7 @@
     overflow: hidden;
     background: var(--dark-sea);
 }
+
+.infra  {
+    display: none;
+}
