@@ -95,22 +95,13 @@ pub fn map() -> Html {
     });
     
     html! {
-        <>
-            <canvas id="map" class="map" 
-                onmousedown={mouse_down}
-                onmouseup={mouse_up}
-                onmousemove={mouse_move}
-                ontouchstart={touch_start}
-                ontouchend={touch_end}
-                ontouchmove={touch_move}>
-            </canvas>
-
-      /*       <div class="infra">
-                <img id="rail"
-                    src="/public/infra/rail.png"
-                    width="32"
-                    height="32" />
-            </div> */
-        </>
+        <canvas id="map" class="map" 
+            onmousedown={mouse_down}
+            onmouseup={mouse_up}
+            onmousemove={mouse_move}
+            ontouchstart={touch_start}
+            ontouchend={touch_end}
+            ontouchmove={touch_move}>
+        </canvas>
     }
 }
