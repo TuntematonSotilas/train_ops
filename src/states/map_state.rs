@@ -23,4 +23,5 @@ pub struct MapState {
     pub prev_x: i32,
     pub prev_y: i32,
     pub tiles: [[Infra; MAP_SIZE]; MAP_SIZE],
+    pub last_render: i32,
 }

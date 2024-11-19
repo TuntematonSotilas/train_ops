@@ -21,10 +21,14 @@ pub fn map() -> Html {
     let dispatch_ts = dispatch.clone();
     let dispatch_tv = dispatch.clone();
 
-    use_effect(|| {
-        wasm_bindgen_futures::spawn_local(async move {
-            canvas::draw_map(state).await;
-        });
+    use_effect(move || {
+        if !state.is_init  {
+            dispatch.reduce_mut(|map| map.is_init = true);
+            log::info!("use_effect");
+            wasm_bindgen_futures::spawn_local(async move {
+                canvas::draw_map(state).await;
+            });
+        } 
     });
 
     let mouse_down = Callback::from(move |e: MouseEvent| {
@@ -38,6 +42,7 @@ pub fn map() -> Html {
             dispatch_md.reduce_mut(|map| map.tiles = tiles);
             let state_draw = state_md.clone();
             wasm_bindgen_futures::spawn_local(async move {
+                log::info!("draw");
                 canvas::draw_map(state_draw).await;
             });
         } else {
@@ -54,15 +59,26 @@ pub fn map() -> Html {
 
     let mouse_move = Callback::from(move |e: MouseEvent| {
         e.prevent_default();
+
         if !state_mv.is_build_mode && state_mv.is_drag {
-            let mx = e.movement_x();
-            let my = e.movement_y();
-            dispatch_mv.reduce_mut(|map| map.x += mx);
-            dispatch_mv.reduce_mut(|map| map.y += my);
-            let state_draw = state_mv.clone();
-            wasm_bindgen_futures::spawn_local(async move {
-                canvas::draw_map(state_draw).await;
-            });
+    
+            //log::info!("{0}", state_mv.last_render);
+
+            if state_mv.last_render > 5 {
+                dispatch_mv.reduce_mut(|map| map.last_render = 0);
+                let mx = e.movement_x();
+                let my = e.movement_y();
+                dispatch_mv.reduce_mut(|map| map.x += mx);
+                dispatch_mv.reduce_mut(|map| map.y += my);
+                let state_draw = state_mv.clone();
+                wasm_bindgen_futures::spawn_local(async move {
+                    canvas::draw_map(state_draw).await;
+                });
+            } else {
+                dispatch_mv.reduce_mut(|map| map.last_render = state_mv.last_render + 1);
+            }
+
+            
         }
     });
 
