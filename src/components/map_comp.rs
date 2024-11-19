@@ -22,7 +22,9 @@ pub fn map() -> Html {
     let dispatch_tv = dispatch.clone();
 
     use_effect(|| {
-        canvas::draw_map(state);
+        wasm_bindgen_futures::spawn_local(async move {
+            canvas::draw_map(state).await;
+        });
     });
 
     let mouse_down = Callback::from(move |e: MouseEvent| {
@@ -35,7 +37,9 @@ pub fn map() -> Html {
             tiles[i][j] = state_md.infra;
             dispatch_md.reduce_mut(|map| map.tiles = tiles);
             let state_draw = state_md.clone();
-            canvas::draw_map(state_draw);
+            wasm_bindgen_futures::spawn_local(async move {
+                canvas::draw_map(state_draw).await;
+            });
         } else {
             dispatch_md.reduce_mut(|map| map.is_drag = true);
         }
@@ -56,7 +60,9 @@ pub fn map() -> Html {
             dispatch_mv.reduce_mut(|map| map.x += mx);
             dispatch_mv.reduce_mut(|map| map.y += my);
             let state_draw = state_mv.clone();
-            canvas::draw_map(state_draw);
+            wasm_bindgen_futures::spawn_local(async move {
+                canvas::draw_map(state_draw).await;
+            });
         }
     });
 
@@ -90,7 +96,9 @@ pub fn map() -> Html {
             dispatch_tv.reduce_mut(|map| map.prev_y = t.client_y());
 
             let state_draw = state_tv.clone();
-            canvas::draw_map(state_draw);
+            wasm_bindgen_futures::spawn_local(async move {
+                canvas::draw_map(state_draw).await;
+            });
         }
     });
     

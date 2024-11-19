@@ -1,7 +1,7 @@
 use yewdux::Store;
 
 const MAP_SIZE: usize = 30;
-pub const TILE_SIZE: i32 = 32;
+pub const TILE_SIZE: i32 = 48;
 
 #[derive(Default, Copy, Clone, PartialEq, Store)]
 pub enum Infra {

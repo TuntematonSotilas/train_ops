@@ -3,11 +3,12 @@ use wasm_bindgen::prelude::*;
 
 use crate::states::map_state::{Infra, MapState, TILE_SIZE};
 
+use super::canvas_util::draw_img;
+
 const DIRT: &str = "#99863a";
 const DARK_DIRT: &str = "#785f28";
-const BLACK: &str = "#000000";
 
-pub fn draw_map(state: Rc<MapState>) {
+pub async fn draw_map(state: Rc<MapState>) {
     
     let tile_size = TILE_SIZE as f64;
 
@@ -48,14 +49,9 @@ pub fn draw_map(state: Rc<MapState>) {
 
 
             if col == &Infra::Rail {
-                //let img = document.get_element_by_id("rail").unwrap();
-                //let a = web_sys::HtmlImageElement::new().unwrap();
-                //a.set_src("/public/infra/rail.png");
-                //a.set_width(32);
-                //a.set_height(32);
-                //ctx.draw_image_with_html_image_element(&a, x, y);
-                ctx.set_fill_style(&BLACK.into());
-                ctx.fill_rect(x, y + 15., tile_size, 5.);
+                draw_img("/public/img/infra/rail.png".to_string(), x, y, &ctx).await;
+                //ctx.set_fill_style(&BLACK.into());
+                //ctx.fill_rect(x, y + 15., tile_size, 5.);
             }
         }
     }
