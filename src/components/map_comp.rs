@@ -33,7 +33,7 @@ pub fn map() -> Html {
             let mut tiles = state_md.tiles;
             let i = ((e.x() - state_md.x) / TILE_SIZE) as usize;
             let j = ((e.y() - state_md.y) / TILE_SIZE) as usize;
-            log::info!("i={i} j={j}");
+            //log::info!("i={i} j={j}");
             tiles[i][j] = state_md.infra;
             dispatch_md.reduce_mut(|map| map.tiles = tiles);
             let state_draw = state_md.clone();

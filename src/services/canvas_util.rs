@@ -3,6 +3,8 @@ use wasm_bindgen::{prelude::*, JsCast, Clamped};
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{CanvasRenderingContext2d, ImageData};
 
+const DARK_DIRT_RGBA: [u8; 4] = [153, 134, 58, 255];
+
 pub async fn fetch_url_binary(url: String) -> Result<Uint8Array, JsValue> {
     let window = web_sys::window().unwrap(); // Browser window
     let promise = JsFuture::from(window.fetch_with_str(&url)); // File fetch promise
@@ -18,7 +20,15 @@ pub async fn draw_img(url: String, x: f64, y: f64, ctx: &CanvasRenderingContext2
         let altbuf = bin.to_vec();
         // Convert the png encoded bytes to an rgba pixel buffer (given the PNG is actually in 8byte RGBA format).
         let image = image::load_from_memory_with_format(&altbuf, image::ImageFormat::Png).unwrap();
-        let rgba_image = image.to_rgba8();
+        let mut rgba_image = image.to_rgba8();
+        // Set background
+        for (_, _, pixel) in rgba_image.enumerate_pixels_mut() {
+            //log::info!("{0}", pixel[0]);
+            if pixel[3] == 0 {
+                *pixel = image::Rgba(DARK_DIRT_RGBA);
+            }
+        }
+                
         let clamped_buf: Clamped<&[u8]> = Clamped(rgba_image.as_raw());
         let image_data = ImageData::new_with_u8_clamped_array_and_sh(clamped_buf, image.width(), image.height()).unwrap();
         _ = ctx.put_image_data(&image_data, x, y);
