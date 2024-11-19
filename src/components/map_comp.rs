@@ -2,7 +2,7 @@
 use yew::prelude::*;
 use yewdux::prelude::*;
 
-use crate::{services::canvas, states::map_state::{Infra, MapState, TILE_SIZE}};
+use crate::{services::canvas, states::map_state::{MapState, TILE_SIZE}};
 
 #[function_component(MapComp)]
 pub fn map() -> Html {
@@ -32,7 +32,7 @@ pub fn map() -> Html {
             let i = ((e.x() - state_md.x) / TILE_SIZE) as usize;
             let j = ((e.y() - state_md.y) / TILE_SIZE) as usize;
             log::info!("i={i} j={j}");
-            tiles[i][j] = Infra::Rail;
+            tiles[i][j] = state_md.infra;
             dispatch_md.reduce_mut(|map| map.tiles = tiles);
             let state_draw = state_md.clone();
             canvas::draw_map(state_draw);
