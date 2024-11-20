@@ -29,17 +29,15 @@ pub fn map() -> Html {
     let dispatch_ts = dispatch.clone();
     let dispatch_tv = dispatch.clone();
 
-    use_effect(move || {
-        if !state_init.is_init  {
-            dispatch.reduce_mut(|map| map.is_init = true);
-            wasm_bindgen_futures::spawn_local(async move {
-                let img_data = canvas_util::fetch_url_binary("/public/img/infra/rail.png".to_string()).await;
-                dispatch_tile.reduce_mut(|tile| tile.img_data = img_data);
-            
-                canvas::draw_map(state_init, tile_state);
-            });
-        } 
-    });
+    if !state_init.is_init  {
+        dispatch.reduce_mut(|map| map.is_init = true);
+        wasm_bindgen_futures::spawn_local(async move {
+            let img_data = canvas_util::fetch_url_binary("/public/img/infra/rail.png".to_string()).await;
+            dispatch_tile.reduce_mut(|tile| tile.img_data = img_data);
+        
+            canvas::draw_map(state_init, tile_state);
+        });
+    }
 
     let mouse_down = Callback::from(move |e: MouseEvent| {
         
