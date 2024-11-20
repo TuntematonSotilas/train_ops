@@ -1,15 +1,17 @@
 use std::rc::Rc;
 use wasm_bindgen::prelude::*;
 
-use crate::states::map_state::{Infra, MapState, TILE_SIZE};
+use crate::states::{map_state::{Infra, MapState, TILE_SIZE}, tile_state::TileState};
 
-use super::canvas_util::draw_img;
+use super::canvas_util;
 
 const DIRT: &str = "#99863a";
 const DARK_DIRT: &str = "#785f28";
 
-pub async fn draw_map(state: Rc<MapState>) {
+pub fn draw_map(map_state: Rc<MapState>, tile_state: Rc<TileState>) {
     
+    log::info!("draw_map");
+
     let tile_size = TILE_SIZE as f64;
 
     let window = web_sys::window().unwrap();
@@ -34,10 +36,10 @@ pub async fn draw_map(state: Rc<MapState>) {
     
     ctx.clear_rect(0., 0., canvas.width() as f64, canvas.height() as f64);
 
-    let map_x = state.x as f64;
-    let map_y = state.y as f64;
+    let map_x = map_state.x as f64;
+    let map_y = map_state.y as f64;
 
-    for (i, row) in state.tiles.iter().enumerate() {
+    for (i, row) in map_state.tiles.iter().enumerate() {
         for (j, col) in row.iter().enumerate() {
             let x = i as f64 * tile_size + map_x;
             let y = j as f64 * tile_size + map_y;
@@ -47,9 +49,13 @@ pub async fn draw_map(state: Rc<MapState>) {
             ctx.fill_rect(x, y, tile_size, tile_size);
             ctx.stroke_rect(x, y, tile_size, tile_size);
 
+            log::info!("col={0}", (*col).to_str());
 
             if col == &Infra::Rail {
-                draw_img("/public/img/infra/rail.png".to_string(), x, y, &ctx).await;
+                log::info!("rail");
+
+                let img_data = tile_state.img_data.clone();
+                canvas_util::draw_img(&ctx, x, y, img_data);
                 //ctx.set_fill_style(&BLACK.into());
                 //ctx.fill_rect(x, y + 15., tile_size, 5.);
             }

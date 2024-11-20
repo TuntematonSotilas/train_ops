@@ -11,6 +11,18 @@ pub enum Infra {
     Station,
 }
 
+impl Infra 
+{
+    pub fn to_str(&self) -> &str 
+    {
+        match &self {
+            Infra::Rail => "Rail",
+            Infra::Station => "Station",
+            _ => "None",
+        }
+    }
+}
+
 #[derive(Default, Clone, PartialEq, Store)]
 pub struct MapState {
     pub is_init: bool,
@@ -23,5 +35,4 @@ pub struct MapState {
     pub prev_x: i32,
     pub prev_y: i32,
     pub tiles: [[Infra; MAP_SIZE]; MAP_SIZE],
-    pub last_render: i32,
 }
