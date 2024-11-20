@@ -10,7 +10,6 @@ pub fn map() -> Html {
     let (state, dispatch) = use_store::<MapState>();
     let (tile_state, dispatch_tile) = use_store::<TileState>();
 
-    
     let tile_state_md = tile_state.clone();
     let tile_state_mv = tile_state.clone();
     let tile_state_tv = tile_state.clone();
@@ -32,14 +31,10 @@ pub fn map() -> Html {
 
     use_effect(move || {
         if !state_init.is_init  {
-            log::info!("map_init");
             dispatch.reduce_mut(|map| map.is_init = true);
-            
             wasm_bindgen_futures::spawn_local(async move {
                 let img_data = canvas_util::fetch_url_binary("/public/img/infra/rail.png".to_string()).await;
-                if let Some(img_data) = img_data {
-                    dispatch_tile.reduce_mut(|tile| tile.img_data = img_data);
-                }
+                dispatch_tile.reduce_mut(|tile| tile.img_data = img_data);
             
                 canvas::draw_map(state_init, tile_state);
             });
@@ -58,22 +53,10 @@ pub fn map() -> Html {
             let mut tiles = state_md.tiles;
             let i = ((e.x() - state_md.x) / TILE_SIZE) as usize;
             let j = ((e.y() - state_md.y) / TILE_SIZE) as usize;
-            
             tiles[i][j] = state_md.infra;
-            
-            log::info!("i={0} j={1} infra={2}", i, j, state_md.infra.to_str());
-            
-
+            //log::info!("i={0} j={1} infra={2}", i, j, state_md.infra.to_str());
             dispatch_md.reduce_mut(|map| map.tiles = tiles);
-            
-                        
-            
-            log::info!("draw");
-
-            //let n_state_md = state.clone();
-
             canvas::draw_map(state_md, tile_state_md);
-            
         } else {
             dispatch_md.reduce_mut(|map| map.is_drag = true);
         }
@@ -100,7 +83,6 @@ pub fn map() -> Html {
             let tile_state_draw = tile_state_mv.clone();
 
             canvas::draw_map(state_draw, tile_state_draw);
-            
         }
     });
 

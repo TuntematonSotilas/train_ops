@@ -3,8 +3,6 @@ use wasm_bindgen::prelude::*;
 
 use crate::states::{map_state::{Infra, MapState, TILE_SIZE}, tile_state::TileState};
 
-use super::canvas_util;
-
 const DIRT: &str = "#99863a";
 const DARK_DIRT: &str = "#785f28";
 
@@ -49,13 +47,11 @@ pub fn draw_map(map_state: Rc<MapState>, tile_state: Rc<TileState>) {
             ctx.fill_rect(x, y, tile_size, tile_size);
             ctx.stroke_rect(x, y, tile_size, tile_size);
 
-            log::info!("col={0}", (*col).to_str());
-
             if col == &Infra::Rail {
-                log::info!("rail");
-
                 let img_data = tile_state.img_data.clone();
-                canvas_util::draw_img(&ctx, x, y, img_data);
+                if let Some(img) = img_data {
+                    _ = ctx.put_image_data(&img, x, y);
+                }
                 //ctx.set_fill_style(&BLACK.into());
                 //ctx.fill_rect(x, y + 15., tile_size, 5.);
             }

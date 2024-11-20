@@ -1,14 +1,8 @@
 
-use js_sys::Uint8Array;
+use web_sys::ImageData;
 use yewdux::Store;
 
-#[derive(Default, Clone, Store)]
+#[derive(PartialEq, Default, Clone, Store)]
 pub struct TileState {
-    pub img_data: Uint8Array,
-}
-
-impl PartialEq for TileState {
-    fn eq(&self, other: &Self) -> bool {
-        self.img_data.length() == other.img_data.length()
-    }
+    pub img_data: Option<ImageData>,
 }
