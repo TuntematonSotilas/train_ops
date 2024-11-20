@@ -50,7 +50,7 @@ pub fn draw_map(map_state: Rc<MapState>, tile_state: Rc<TileState>) {
             if col == &Infra::Rail {
                 let img_data = tile_state.img_data.clone();
                 if let Some(img) = img_data {
-                    _ = ctx.put_image_data(&img, x, y);
+                   // _ = ctx.put_image_data(&img, x, y);
                 }
                 //ctx.set_fill_style(&BLACK.into());
                 //ctx.fill_rect(x, y + 15., tile_size, 5.);

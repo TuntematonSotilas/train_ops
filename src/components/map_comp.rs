@@ -1,4 +1,5 @@
 
+use gloo_timers::callback::{Interval, Timeout};
 use yew::prelude::*;
 use yewdux::prelude::*;
 
@@ -7,12 +8,30 @@ use crate::{services::{canvas, canvas_util}, states::{map_state::{MapState, TILE
 #[function_component(MapComp)]
 pub fn map() -> Html {
 
+    // Refresh map every 1s
     let (state, dispatch) = use_store::<MapState>();
     let (tile_state, dispatch_tile) = use_store::<TileState>();
 
-    let tile_state_md = tile_state.clone();
-    let tile_state_mv = tile_state.clone();
-    let tile_state_tv = tile_state.clone();
+
+    if !state.is_init {
+        dispatch.reduce_mut(|map| map.is_init = true);
+
+        log::info!("init_ref");
+
+        let state_ref = state.clone();
+        let tile_state_ref = tile_state.clone();
+
+        log::info!("refresh x={0}", state_ref.x);
+        
+        let timeout = Interval::new(1_000, move || {
+            log::info!("refresh x={0}", state_ref.x);
+            let state_ref = state_ref.clone();
+            let tile_state_ref = tile_state_ref.clone();
+            canvas::draw_map(state_ref, tile_state_ref);
+        });
+        timeout.forget();
+ 
+    }
 
     let state_init = state.clone();
     let state_md = state.clone();
@@ -29,22 +48,21 @@ pub fn map() -> Html {
     let dispatch_ts = dispatch.clone();
     let dispatch_tv = dispatch.clone();
 
-    if !state_init.is_init  {
+    /*if !state_init.is_init  {
         dispatch.reduce_mut(|map| map.is_init = true);
         wasm_bindgen_futures::spawn_local(async move {
             let img_data = canvas_util::fetch_url_binary("/public/img/infra/rail.png".to_string()).await;
             dispatch_tile.reduce_mut(|tile| tile.img_data = img_data);
         
-            canvas::draw_map(state_init, tile_state);
+            //canvas::draw_map(state_init, tile_state);
         });
-    }
+    }*/
 
     let mouse_down = Callback::from(move |e: MouseEvent| {
         
         e.prevent_default();
 
         let state_md = state_md.clone();
-        let tile_state_md = tile_state_md.clone();
         let dispatch_md = dispatch_md.clone();
 
         if state_md.is_build_mode {
@@ -54,7 +72,7 @@ pub fn map() -> Html {
             tiles[i][j] = state_md.infra;
             //log::info!("i={0} j={1} infra={2}", i, j, state_md.infra.to_str());
             dispatch_md.reduce_mut(|map| map.tiles = tiles);
-            canvas::draw_map(state_md, tile_state_md);
+            //canvas::draw_map(state_md, tile_state_md);
         } else {
             dispatch_md.reduce_mut(|map| map.is_drag = true);
         }
@@ -68,8 +86,11 @@ pub fn map() -> Html {
         }
     });
 
+
     let mouse_move = Callback::from(move |e: MouseEvent| {
         e.prevent_default();
+
+        
 
         if !state_mv.is_build_mode && state_mv.is_drag {
     
@@ -77,10 +98,10 @@ pub fn map() -> Html {
             let my = e.movement_y();
             dispatch_mv.reduce_mut(|map| map.x += mx);
             dispatch_mv.reduce_mut(|map| map.y += my);
-            let state_draw = state_mv.clone();
-            let tile_state_draw = tile_state_mv.clone();
 
-            canvas::draw_map(state_draw, tile_state_draw);
+            //state_inc.set(*state_inc + mx);
+
+            //canvas::draw_map(state_draw, tile_state_draw);
         }
     });
 
@@ -112,10 +133,6 @@ pub fn map() -> Html {
             }
             dispatch_tv.reduce_mut(|map| map.prev_x = t.client_x());
             dispatch_tv.reduce_mut(|map| map.prev_y = t.client_y());
-
-            let state_draw = state_tv.clone();
-            let tile_state_tv = tile_state_tv.clone();
-            canvas::draw_map(state_draw, tile_state_tv);
 
         }
     });
