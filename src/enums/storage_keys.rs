@@ -1,6 +1,10 @@
 pub enum StorageKey {
     User,
     Lang,
+    CameraX,
+    CameraY,
+    Tiles,
+    ImagesDatas,
 }
 
 impl StorageKey 
@@ -10,6 +14,10 @@ impl StorageKey
         match &self {
             StorageKey::User => "user",
             StorageKey::Lang => "lang",
+            StorageKey::CameraX => "camera_x",
+            StorageKey::CameraY => "camera_y",
+            StorageKey::Tiles => "tiles",
+            StorageKey::ImagesDatas => "images_datas",
         }
     }
 }

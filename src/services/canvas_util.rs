@@ -1,10 +1,8 @@
 use gloo_net::http::Request;
-use wasm_bindgen::Clamped;
-use web_sys::ImageData;
 
 const DARK_DIRT_RGBA: [u8; 4] = [153, 134, 58, 255];
 
-pub async fn fetch_url_binary(url: String) -> Option<ImageData> {
+pub async fn fetch_url_binary(url: String) -> Vec<u8> {
     // Fetch picture
     let result = Request::get(&url)
         .send()
@@ -22,8 +20,6 @@ pub async fn fetch_url_binary(url: String) -> Option<ImageData> {
             *pixel = image::Rgba(DARK_DIRT_RGBA);
         }
     }
-    // Re-convert to image
-    let clamped_buf: Clamped<&[u8]> = Clamped(rgba_image.as_raw());
-    let image_data = ImageData::new_with_u8_clamped_array_and_sh(clamped_buf, image.width(), image.height()).unwrap();
-    Some(image_data)
+    let raw = rgba_image.as_raw().clone();
+    raw
 }

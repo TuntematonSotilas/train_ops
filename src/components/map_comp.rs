@@ -1,41 +1,39 @@
 
-use gloo_timers::callback::{Interval, Timeout};
+use gloo_timers::callback::Interval;
 use yew::prelude::*;
 use yewdux::prelude::*;
 
-use crate::{services::{canvas, canvas_util}, states::{map_state::{MapState, TILE_SIZE}, tile_state::TileState}};
+use crate::{enums::storage_keys::StorageKey, services::{canvas, canvas_util, storage}, states::map_state::{ImagesDatas, MapState, Tiles, TILE_SIZE}};
 
 #[function_component(MapComp)]
 pub fn map() -> Html {
 
-    // Refresh map every 1s
     let (state, dispatch) = use_store::<MapState>();
-    let (tile_state, dispatch_tile) = use_store::<TileState>();
-
 
     if !state.is_init {
-        dispatch.reduce_mut(|map| map.is_init = true);
-
-        log::info!("init_ref");
-
-        let state_ref = state.clone();
-        let tile_state_ref = tile_state.clone();
-
-        log::info!("refresh x={0}", state_ref.x);
         
-        let timeout = Interval::new(1_000, move || {
-            log::info!("refresh x={0}", state_ref.x);
-            let state_ref = state_ref.clone();
-            let tile_state_ref = tile_state_ref.clone();
-            canvas::draw_map(state_ref, tile_state_ref);
+        log::info!("init map");
+        dispatch.reduce_mut(|map| map.is_init = true);
+        
+        storage::save(StorageKey::CameraX, "0");
+        storage::save(StorageKey::CameraY, "0");
+        storage::save(StorageKey::Tiles, Tiles::new().to_json().as_str());
+
+        wasm_bindgen_futures::spawn_local(async move {
+            let rail_data = canvas_util::fetch_url_binary("/public/img/infra/rail.png".to_string()).await;
+            let images = ImagesDatas {
+                rail: rail_data
+            };
+            storage::save(StorageKey::ImagesDatas, images.to_json().as_str());
         });
-        timeout.forget();
- 
+    
+        let interval = Interval::new(500, move || {
+            canvas::draw_map();
+        });
+        interval.forget(); 
     }
 
-    let state_init = state.clone();
     let state_md = state.clone();
-    let state_mu = state.clone();
     let state_mv = state.clone();
     let state_te = state.clone();
     let state_ts = state.clone();
@@ -43,36 +41,29 @@ pub fn map() -> Html {
 
     let dispatch_md = dispatch.clone();
     let dispatch_mu = dispatch.clone();
-    let dispatch_mv = dispatch.clone();
     let dispatch_te = dispatch.clone();
     let dispatch_ts = dispatch.clone();
     let dispatch_tv = dispatch.clone();
 
-    /*if !state_init.is_init  {
-        dispatch.reduce_mut(|map| map.is_init = true);
-        wasm_bindgen_futures::spawn_local(async move {
-            let img_data = canvas_util::fetch_url_binary("/public/img/infra/rail.png".to_string()).await;
-            dispatch_tile.reduce_mut(|tile| tile.img_data = img_data);
-        
-            //canvas::draw_map(state_init, tile_state);
-        });
-    }*/
-
     let mouse_down = Callback::from(move |e: MouseEvent| {
-        
         e.prevent_default();
-
-        let state_md = state_md.clone();
-        let dispatch_md = dispatch_md.clone();
-
         if state_md.is_build_mode {
-            let mut tiles = state_md.tiles;
-            let i = ((e.x() - state_md.x) / TILE_SIZE) as usize;
-            let j = ((e.y() - state_md.y) / TILE_SIZE) as usize;
-            tiles[i][j] = state_md.infra;
-            //log::info!("i={0} j={1} infra={2}", i, j, state_md.infra.to_str());
-            dispatch_md.reduce_mut(|map| map.tiles = tiles);
-            //canvas::draw_map(state_md, tile_state_md);
+            let mut x = 0;
+            let mut y = 0;
+            if let Some(camera_x) = storage::get(StorageKey::CameraX) {
+                x = camera_x.parse::<i32>().unwrap();
+            }
+            if let Some(camera_y) = storage::get(StorageKey::CameraY) {
+                y = camera_y.parse::<i32>().unwrap();
+            }
+            let tiles_sto = Tiles::from_storage();
+            if let Some(mut tiles) = tiles_sto {
+                let i = ((e.x() - x) / TILE_SIZE) as usize;
+                let j = ((e.y() - y) / TILE_SIZE) as usize;
+                tiles.data[i][j] = state_md.infra;
+                storage::save(StorageKey::Tiles, tiles.to_json().as_str());
+            }
+           
         } else {
             dispatch_md.reduce_mut(|map| map.is_drag = true);
         }
@@ -81,27 +72,26 @@ pub fn map() -> Html {
 
     let mouse_up = Callback::from(move |e: MouseEvent| {
         e.prevent_default();
-        if !state_mu.is_build_mode {
-            dispatch_mu.reduce_mut(|map| map.is_drag = false);
-        }
+        dispatch_mu.reduce_mut(|map| map.is_drag = false);
     });
 
 
     let mouse_move = Callback::from(move |e: MouseEvent| {
         e.prevent_default();
 
-        
-
         if !state_mv.is_build_mode && state_mv.is_drag {
-    
             let mx = e.movement_x();
             let my = e.movement_y();
-            dispatch_mv.reduce_mut(|map| map.x += mx);
-            dispatch_mv.reduce_mut(|map| map.y += my);
-
-            //state_inc.set(*state_inc + mx);
-
-            //canvas::draw_map(state_draw, tile_state_draw);
+            if let Some(camera_x) = storage::get(StorageKey::CameraX) {
+                let mut x = camera_x.parse::<i32>().unwrap();
+                x += mx;
+                storage::save(StorageKey::CameraX, x.to_string().as_str());
+            }
+            if let Some(camera_y) = storage::get(StorageKey::CameraY) {
+                let mut y = camera_y.parse::<i32>().unwrap();
+                y += my;
+                storage::save(StorageKey::CameraY, y.to_string().as_str());
+            }
         }
     });
 
@@ -113,8 +103,8 @@ pub fn map() -> Html {
     });
 
     let touch_end = Callback::from(move |_| {
-        if !state_te.is_build_mode {
-            dispatch_te.reduce_mut(|map| map.is_drag = false);
+        dispatch_te.reduce_mut(|map| map.is_drag = false);
+        if !state_te.is_build_mode {    
             dispatch_te.reduce_mut(|map| map.prev_x = 0);
             dispatch_te.reduce_mut(|map| map.prev_y = 0);
         }
@@ -125,15 +115,22 @@ pub fn map() -> Html {
             let t = e.touches().get(0).unwrap();
             if state_tv.prev_x > 0 {
                 let mx = t.client_x() - state_tv.prev_x;
-                dispatch_tv.reduce_mut(|map| map.x += mx);
+                if let Some(camera_x) = storage::get(StorageKey::CameraX) {
+                    let mut x = camera_x.parse::<i32>().unwrap();
+                    x += mx;
+                    storage::save(StorageKey::CameraX, x.to_string().as_str());
+                }
             }
             if state_tv.prev_y > 0 {
                 let my = t.client_y() - state_tv.prev_y;
-                dispatch_tv.reduce_mut(|map| map.y += my);
+                if let Some(camera_y) = storage::get(StorageKey::CameraY) {
+                    let mut y = camera_y.parse::<i32>().unwrap();
+                    y += my;
+                    storage::save(StorageKey::CameraY, y.to_string().as_str());
+                }
             }
             dispatch_tv.reduce_mut(|map| map.prev_x = t.client_x());
             dispatch_tv.reduce_mut(|map| map.prev_y = t.client_y());
-
         }
     });
     
