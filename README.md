@@ -32,7 +32,7 @@ cargo tauri dev
 
 * Generate the JKS file : [generate-key](https://developer.android.com/studio/publish/app-signing?hl=fr#generate-key)
 * Copy the `key.jks` file in the folder `src-tauri/gen/android/app`
-* Create the file `key.properties` in the folder `src-tauri/gen/android/app`
+* Create the file `key.properties` in the folder `src-tauri/gen/android/`
 ```
 storePassword=
 keyPassword=
