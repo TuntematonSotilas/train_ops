@@ -69,8 +69,8 @@ pub fn draw_map() {
                     let fx = x as f64;
                     let fy = y as f64;
                     
-                    ctx.set_fill_style(&DIRT.into());
-                    ctx.set_stroke_style(&DARK_DIRT.into());
+                    ctx.set_fill_style_str(&DIRT);
+                    ctx.set_stroke_style_str(&DARK_DIRT);
                     ctx.fill_rect(fx, fy, fts, fts);
                     ctx.stroke_rect(fx, fy, fts, fts);
         
